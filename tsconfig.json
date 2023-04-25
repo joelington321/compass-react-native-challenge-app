@@ -3,13 +3,15 @@
     "target": "es6",
     "module": "commonjs",
     "sourceMap": true,
-    "outDir": "src/js",
     "strict": true,
     "esModuleInterop": true,
     "jsx": "react",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "rootDir": ""
   },
   "include": [
-    "src/ts/**/*"
-  ]
+    "src/**/*",
+    "App.tsx"
+  ],
+  
 }

@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import React, { useEffect } from 'react';
-import * as Font from 'expo-font';
+import React from 'react';
+import PrimaryButton from './src/components/Buttons/PrimaryButton.js';
 
 
 export default function App() {
@@ -9,9 +9,12 @@ export default function App() {
   return (
     
     <View style={styles.container}>
-      <Text style={styles.textTest}>WELCOME</Text>
-      <Text style={styles.textInput}>First Setup of the APP.</Text>
       
+      <Text style={styles.textTest}>WELCOME</Text>
+      
+      <PrimaryButton title={'LOGIN'} onPress={function (): void {
+        throw new Error('Function not implemented.');
+      } }></PrimaryButton>
       <StatusBar style="auto" />
     </View>
   );
@@ -28,7 +31,6 @@ const styles = StyleSheet.create({
     color: '#D78f3C',
     fontSize: 50,
     fontWeight: 'bold',
-    fontFamily: 'Khula'
   },
   textInput:{
     color: '#656262'
@@ -36,8 +38,3 @@ const styles = StyleSheet.create({
 });
 
 
-async function loadFonts() {
-  await Font.loadAsync({
-    'Khula': require('../../assets/fonts/Khula-Regular.ttf'),
-  });
-}
