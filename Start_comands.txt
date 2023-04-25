@@ -1,0 +1,4 @@
+Commands for start the project:
+
+tsc --watch
+npx expo start
