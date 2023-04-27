@@ -5,7 +5,7 @@ interface FooterProps {
   children: string;
 }
 
-function Footer({ children }: FooterProps) {
+const Footer = ({ children }: FooterProps) => {
   return (
     <View style={styles.container}>
       <Text>{children}</Text>
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     borderColor: '#D78F3C',
     alignSelf: 'stretch',
     height: 50,
-    width: '100%',
+    width: 400,
   }
 });
 

@@ -1,5 +1,6 @@
 import React from 'react';
-import { TextInput, Text, View, StyleSheet, Image } from 'react-native';
+import { TextInput, Text, View, Image } from 'react-native';
+import styles from './style';
 
 interface PrimaryInputProps {
     placeholder: string;
@@ -32,60 +33,8 @@ const PrimaryInput = ({ placeholder, errorMsg, secureTextEntry, icon, ...props }
 
 export default PrimaryInput;
 
-const styles = StyleSheet.create({
-    primaryInputContainer: {
-        padding: 5,
-        height: 90,
-    },
-    errorMsg: {
-        margin: 3,
-        display: 'flex',
-        justifyContent: 'flex-start',
-        color: '#FF4B4B',
-        fontSize: 12,
-        paddingLeft: 15,
-
-    },
-    inputBackground: {
-        backgroundColor: '#656262',
-        borderRadius: 25,
-        justifyContent: 'flex-start',
-        width: 350,
-        height: 50,
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 16,
-        borderColor: '#FF4B4B',
-        borderWidth: 1
-    },
-    icon: {
-        width: 18,
-        height: 24,
-        marginRight: 8
-    }
-});
 
 
 
 
 
-
-
-/*
-const styles = StyleSheet.create({
-    errorMsg: {
-        margin: 3,
-        display: 'flex',
-        justifyContent: 'flex-start',
-        color: '#FF4B4B',
-        fontSize: 12
-    },
-    inputBackground: {
-        backgroundColor: '#656262',
-        borderRadius: 25,
-        justifyContent: 'center',
-        width: 375,
-        height: 55,
-        // paddingBottom: '10'
-    }
-});*/
