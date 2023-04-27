@@ -1,5 +1,5 @@
-import { Text, View, StyleSheet} from 'react-native';
-import React, {Component} from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import React from 'react';
 
 interface FooterProps {
   children: string;
@@ -13,21 +13,19 @@ function Footer({ children }: FooterProps) {
   );
 }
 
-
 const styles = StyleSheet.create({
-    container: {
-      //flex : 1,
-      backgroundColor: '#2D2D2D',
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderTopWidth: 1,
-      borderColor: '#D78F3C'
-    }
-  });
+  container: {
+    backgroundColor: '#2D2D2D',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderTopWidth: 1,
+    borderColor: '#D78F3C',
+    alignSelf: 'stretch',
+    height: 50,
+    width: '100%',
+  }
+});
+
+
 
 export default Footer;
-
-
-
-
-

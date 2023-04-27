@@ -4,11 +4,13 @@ import { StyleSheet, Text, View, Pressable } from 'react-native';
 
 interface PrimaryButtonProps {
   children: string;
+  //function
 }
 
+//Primary button receive a string to display and a function to execute
 function PrimaryButton({ children }: PrimaryButtonProps) {
 
-  function pressHandler(){
+  function pressHandler() {
     console.log('Pressed');
   }
 
@@ -28,11 +30,15 @@ const styles = StyleSheet.create({
   buttonStyle: {
     backgroundColor: '#D78F3C',
     borderRadius: 25,
-    paddingVertical: 10,
-    paddingHorizontal: 100
+    width: 375,
+    height: 55,
+    justifyContent: 'center'
+
   },
-  textButton:{
-    color:'#F5F5F5',
+  textButton: {
+    color: '#F5F5F5',
+    textAlign: 'center',
+
   }
 });
 
