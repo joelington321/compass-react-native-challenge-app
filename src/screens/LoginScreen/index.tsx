@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
   inputsContainer: {
     flex: 6,
     //justifyContent: 'center',
+    alignItems: 'center',
   },
   welcomeTest: {
     color: '#D78f3C',
