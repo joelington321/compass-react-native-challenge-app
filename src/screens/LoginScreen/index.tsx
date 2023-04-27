@@ -10,7 +10,7 @@ class LoginScreen extends Component {
       <View style={styles.container}>
         <View style={styles.bodyContainer}>
           <View style={styles.welcomeContainer}>
-            <Text style={styles.welcomeTest}>WELCOME</Text>
+            <Text style={styles.welcomeTest}>WELCOME TEST</Text>
           </View>
           <View style={styles.inputsContainer}>
             <PrimaryInput icon={require('../../assets/icons/icon_mail.png')} placeholder='Your email' errorMsg='Please enter a valid email address.'></PrimaryInput>
