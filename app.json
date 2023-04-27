@@ -1,6 +1,5 @@
 {
   "expo": {
-    "main": "./App.js",
     "name": "CompassApp",
     "slug": "CompassApp",
     "version": "1.0.0",
@@ -21,7 +20,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/icons/adaptive-icon.png",
-        "backgroundColor": "#2D2D2D"
+        "backgroundColor": "#ffffff"
       }
     },
     "web": {
