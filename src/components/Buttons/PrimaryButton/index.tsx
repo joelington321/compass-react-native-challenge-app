@@ -5,16 +5,14 @@ import styles from './style';
 
 interface PrimaryButtonProps {
   children: string;
-  //function
+  onPress: () => void; // new prop for onPress function
 }
 
-//Primary button receive a string to display and a function to execute
-const PrimaryButton = ({ children }: PrimaryButtonProps) => {
+const PrimaryButton = ({ children, onPress }: PrimaryButtonProps) => {
 
   function pressHandler() {
-    console.log('Pressed');
+    onPress(); // call the onPress function
   }
-
 
   return (
     <Pressable onPress={pressHandler}>
@@ -24,9 +22,5 @@ const PrimaryButton = ({ children }: PrimaryButtonProps) => {
     </Pressable>
   );
 }
-
-
-
-
 
 export default PrimaryButton;
