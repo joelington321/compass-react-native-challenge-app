@@ -1,19 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { Text, View, Pressable } from 'react-native';
+import styles from './style';
 
 
 interface PrimaryButtonProps {
   children: string;
-  //function
+  onPress: () => void; // new prop for onPress function
 }
 
-//Primary button receive a string to display and a function to execute
-function PrimaryButton({ children }: PrimaryButtonProps) {
+const PrimaryButton = ({ children, onPress }: PrimaryButtonProps) => {
 
   function pressHandler() {
-    console.log('Pressed');
+    onPress(); // call the onPress function
   }
-
 
   return (
     <Pressable onPress={pressHandler}>
@@ -23,23 +22,5 @@ function PrimaryButton({ children }: PrimaryButtonProps) {
     </Pressable>
   );
 }
-
-
-
-const styles = StyleSheet.create({
-  buttonStyle: {
-    backgroundColor: '#D78F3C',
-    borderRadius: 25,
-    width: 350,
-    height: 50,
-    justifyContent: 'center'
-
-  },
-  textButton: {
-    color: '#F5F5F5',
-    textAlign: 'center',
-
-  }
-});
 
 export default PrimaryButton;

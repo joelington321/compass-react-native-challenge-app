@@ -1,29 +1,49 @@
 import React from 'react';
-import { TextInput, Text, View, StyleSheet, Image } from 'react-native';
+import { TextInput, Text, View, Image } from 'react-native';
+import styles from './style';
+import colors from '../../../global/colors';
 
 interface PrimaryInputProps {
     placeholder: string;
     errorMsg: string;
+    value: string;
     secureTextEntry?: boolean;
     icon?: any;
+    error?: boolean;
+    onChangeText: ((text: string) => void) | undefined;
 }
 
 
-//primary entry takes placeholder, error message and icon reference, securityTextEntry is optional the default is false.
-const PrimaryInput = ({ placeholder, errorMsg, secureTextEntry, icon, ...props }: PrimaryInputProps) => {
+const PrimaryInput = ({ placeholder, errorMsg, secureTextEntry, icon, value, error, onChangeText, ...props }: PrimaryInputProps) => {
+
+
+
+    //Checks if there is an error or not, if there is, it displays the error and adds the border
+    const borderColor = error ? colors.Warning : colors.Input;
+    const displayError = error ? 'flex' : 'none';
+
+    const handleOnChangeText = (text: string) => {
+        // Check if there is an error and update the state variable accordingly
+
+        // Call the onChangeText function provided by the parent component
+        onChangeText && onChangeText(text);
+    };
+
     return (
-        <View style={styles.primaryInputContainer}>
-            <View style={styles.inputBackground}>
+        <View style={[styles.primaryInputContainer]}>
+            <View style={[styles.inputBackground, { borderColor }]}>
                 {icon && <Image source={icon} style={styles.icon} />}
                 <TextInput
                     style={{ flex: 1 }}
                     placeholder={placeholder}
-                    placeholderTextColor={'#a8a8a8'}
+                    placeholderTextColor={colors.InputPlaceholder}
                     secureTextEntry={secureTextEntry}
+                    value={value}
+                    onChangeText={handleOnChangeText}
                     {...props}
                 />
             </View>
-            <View>
+            <View style={{ display: displayError }}>
                 <Text style={styles.errorMsg}>{errorMsg}</Text>
             </View>
         </View>
@@ -31,61 +51,3 @@ const PrimaryInput = ({ placeholder, errorMsg, secureTextEntry, icon, ...props }
 };
 
 export default PrimaryInput;
-
-const styles = StyleSheet.create({
-    primaryInputContainer: {
-        padding: 5,
-        height: 90,
-    },
-    errorMsg: {
-        margin: 3,
-        display: 'flex',
-        justifyContent: 'flex-start',
-        color: '#FF4B4B',
-        fontSize: 12,
-        paddingLeft: 15,
-
-    },
-    inputBackground: {
-        backgroundColor: '#656262',
-        borderRadius: 25,
-        justifyContent: 'flex-start',
-        width: 350,
-        height: 50,
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 16,
-        borderColor: '#FF4B4B',
-        borderWidth: 1
-    },
-    icon: {
-        width: 18,
-        height: 24,
-        marginRight: 8
-    }
-});
-
-
-
-
-
-
-
-/*
-const styles = StyleSheet.create({
-    errorMsg: {
-        margin: 3,
-        display: 'flex',
-        justifyContent: 'flex-start',
-        color: '#FF4B4B',
-        fontSize: 12
-    },
-    inputBackground: {
-        backgroundColor: '#656262',
-        borderRadius: 25,
-        justifyContent: 'center',
-        width: 375,
-        height: 55,
-        // paddingBottom: '10'
-    }
-});*/
