@@ -1,52 +1,63 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native'
+import { View, StyleSheet, Text, FlatList } from 'react-native';
 import colors from '../../global/colors';
 
-interface CategoryGridTileProps {
-    title: string;
-    color: string;
-}
+const Card = () => {
+    return <View style={styles.card} />;
+};
 
-const CategoryGridTile = ({ title, color }: CategoryGridTileProps) => {
+const HomeScreen = () => {
+    const data = [1, 2, 3, 4, 5, 6, 7, 8];
+
+    const renderItem = () => {
+        return <Card />;
+    };
+
     return (
-        <View style={[{ backgroundColor: color }]}>
-            <Text>{title}</Text>
+        <View style={styles.container}>
+            <View style={styles.textContainer}>
+                <Text style={styles.header}>HOME</Text>
+            </View>
+            <FlatList
+                data={data}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.toString()}
+                contentContainerStyle={styles.containerCards}
+                numColumns={2}
+            />
         </View>
     );
 };
 
-const data = [{ key: '1' }, { key: '2' }, { key: '3' }, { key: '4' }, { key: '5' }, { key: '6' }, { key: '7' }, { key: '8' }, { key: '9' }, { key: '10' }, { key: '11' }, { key: '12' }, { key: '13' }, { key: '14' }];
-
-function HomeScreen() {
-    return (
-        <View style={styles.mainContainer}>
-            <View style={styles.textContainer}>
-                <Text style={styles.topText} >HOME</Text>
-            </View>
-            <FlatList
-                data={data}
-                renderItem={({ item }) => <CategoryGridTile title={item.key} color={'white'} />}
-                numColumns={2}
-            />
-        </View>
-    )
-}
-
-
-
 const styles = StyleSheet.create({
-    mainContainer: {
-        width: '95%',
-        flexDirection: 'column',
-        justifyContent: 'flex-start'
+    container: {
+        flex: 1,
+        backgroundColor: colors.Background,
     },
-    topText: {
-        color: colors.Primary,
+    containerCards: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: colors.Background,
+        paddingVertical: 10,
+    },
+    header: {
         fontSize: 20,
+        color: colors.Primary,
+        justifyContent: 'center',
     },
     textContainer: {
-        marginBottom: 20,
-    }
+        margin: 15,
+        alignItems: 'flex-start',
+        paddingBottom: 25,
+    },
+    card: {
+        width: 150,
+        height: 200,
+        backgroundColor: 'white',
+        margin: 10,
+        borderRadius: 10,
+        elevation: 2,
+    },
 });
 
 export default HomeScreen;
