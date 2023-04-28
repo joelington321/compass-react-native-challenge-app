@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 import Checkbox from 'expo-checkbox';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import PrimaryButton from '../../components/Buttons/PrimaryButton';
 import Footer from '../../components/Footer';
 import PrimaryInput from '../../components/Inputs/PrimaryInput';
@@ -11,8 +11,76 @@ interface SignupScreenProps {
     navigation: NavigationProp<ParamListBase>; // define type of navigation prop
 }
 
+const icons = {
+    iconEmail: require('../../assets/icons/icon_mail.png'),
+    iconPassword: require('../../assets/icons/icon_lock.png'),
+    iconUser: require('../../assets/icons/icon_user.png')
+}
+
 const SignupScreen = ({ navigation }: SignupScreenProps) => {
     const [isChecked, setChecked] = useState(false);
+    const [checkboxError, setCheckboxError] = useState<'flex' | 'none'>('none');
+    //functions to tracker the value of email input
+    const [email, setEmail] = useState("");
+    //use of callback function for save after the email text in <primaryInput> is change
+    const emailInputHandler = useCallback((text: string) => {
+        setEmail(text);
+    }, []);
+
+    //functions to tracker the value of email input
+    const [username, setUsername] = useState("");
+    //use of callback function for save after the email text in <primaryInput> is change
+    const usernameInputHandler = useCallback((text: string) => {
+        setUsername(text);
+    }, []);
+
+
+    //functions to tracker the value of password input
+    const [password, setPassword] = useState("");
+    //use of callback function for save after the password text in <primaryInput> is change
+    const passwordInputHandler = useCallback((text: string) => {
+        setPassword(text);
+    }, []);
+
+    //instantiate the values of errors verify
+    const [emailError, setEmailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+    const [usernameError, setUsernameError] = useState(false);
+
+
+
+    const handleSignupPress = () => {
+
+        //verify if the fields is empty and display a error msg
+        if (email !== '' && password !== '' && username !== '' && isChecked === true) {
+            navigation.navigate("HomeScreen");
+        } else {
+            if (email === '') {
+                setEmailError(true);
+            } else {
+                setEmailError(false);
+            }
+
+            if (password === '') {
+                setPasswordError(true);
+            } else {
+                setPasswordError(false);
+            }
+
+            if (username === '') {
+                setUsernameError(true);
+            } else {
+                setUsernameError(false);
+            }
+
+            if (!isChecked) {
+                setCheckboxError('flex');
+            } else {
+                setCheckboxError('none');
+            }
+
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -21,19 +89,37 @@ const SignupScreen = ({ navigation }: SignupScreenProps) => {
                     <Text style={styles.welcomeText}>SIGN UP</Text>
                 </View>
                 <View style={styles.inputsContainer}>
-                    <PrimaryInput icon={require('../../assets/icons/icon_mail.png')} placeholder='Your email' errorMsg='Please enter a valid email address.' />
-                    <PrimaryInput icon={require('../../assets/icons/icon_user.png')} placeholder='Username' errorMsg='Please enter a valid username.' />
-                    <PrimaryInput icon={require('../../assets/icons/icon_lock.png')} placeholder='Your password' errorMsg='Please enter a valid password.' secureTextEntry />
+                    <PrimaryInput icon={icons.iconEmail}
+                        placeholder='Your email'
+                        errorMsg='Please enter a valid email address.'
+                        error={emailError}
+                        value={email}
+                        onChangeText={emailInputHandler} />
+
+                    <PrimaryInput icon={icons.iconUser}
+                        placeholder='Username'
+                        errorMsg='Please enter a valid username.'
+                        value={username}
+                        error={usernameError}
+                        onChangeText={usernameInputHandler} />
+
+                    <PrimaryInput icon={icons.iconPassword}
+                        placeholder='Your password'
+                        errorMsg='Please enter a valid password.'
+                        secureTextEntry
+                        error={passwordError}
+                        value={password}
+                        onChangeText={passwordInputHandler} />
                     <View style={styles.termsContainer}>
                         <Checkbox color='#ffffff' value={isChecked} onValueChange={setChecked} />
                         <View style={styles.errorMsgContainer}>
                             <Text style={styles.termsText}>Agree to Terms and conditions</Text>
-                            <View>
-                                <Text style={styles.errorMsg}>Please accept the terms.</Text>
+                            <View >
+                                <Text style={[styles.errorMsg, { display: checkboxError }]}>Please accept the terms.</Text>
                             </View>
                         </View>
                     </View>
-                    <PrimaryButton onPress={() => navigation.navigate("HomeScreen")}>CREATE ACCOUNT</PrimaryButton>
+                    <PrimaryButton onPress={handleSignupPress}>CREATE ACCOUNT</PrimaryButton>
                 </View>
             </View>
             <View style={styles.footerContainer}>

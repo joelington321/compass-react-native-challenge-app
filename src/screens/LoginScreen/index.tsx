@@ -20,6 +20,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
 
   //functions to tracker the value of email input
   const [email, setEmail] = useState("");
+  //use of callback function for save after the email text in <primaryInput> is change
   const emailInputHandler = useCallback((text: string) => {
     setEmail(text);
   }, []);
@@ -27,6 +28,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
 
   //functions to tracker the value of password input
   const [password, setPassword] = useState("");
+  //use of callback function for save after the password text in <primaryInput> is change
   const passwordInputHandler = useCallback((text: string) => {
     setPassword(text);
   }, []);
@@ -37,6 +39,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
 
   const handleLoginPress = () => {
 
+    //verify if the fields is empty and display a error msg
     if (email !== '' && password !== '') {
       console.log('Navigating to HomeScreen');
       navigation.navigate("HomeScreen");
@@ -53,8 +56,6 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
         setPasswordError(false);
       }
     }
-    console.log("emailError ==== " + emailError);
-    console.log("passwordError ==== " + passwordError);
   }
 
 

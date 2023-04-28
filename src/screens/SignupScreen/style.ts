@@ -5,10 +5,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#2D2D2D',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   welcomeContainer: {
-    flex: 6,
+    flex: 5,
     justifyContent: 'center',
   },
   inputsContainer: {
@@ -35,8 +35,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   termsContainer: {
+    alignItems: 'flex-start',
     flexDirection:'row',
-    paddingBottom: 25,
+    height: 50,
     justifyContent: 'flex-start',
   },
   termsText: {
@@ -45,6 +46,7 @@ const styles = StyleSheet.create({
   },
   errorMsgContainer:{
     flexDirection:'column',
+    paddingBottom:0,
   },
   errorMsg: {
     margin: 3,
@@ -53,6 +55,7 @@ const styles = StyleSheet.create({
     color: '#FF4B4B',
     fontSize: 12,
     paddingLeft: 15,
+    paddingBottom:0,
 }
 });
 
