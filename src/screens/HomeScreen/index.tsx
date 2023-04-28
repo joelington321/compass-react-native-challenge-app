@@ -1,14 +1,15 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native'
+import colors from '../../global/colors';
 
 interface CategoryGridTileProps {
     title: string;
     color: string;
 }
 
-const CategoryGridTile: React.FC<CategoryGridTileProps> = ({ title, color }) => {
+const CategoryGridTile = ({ title, color }: CategoryGridTileProps) => {
     return (
-        <View style={[styles.gridItem, { backgroundColor: color }]}>
+        <View style={[{ backgroundColor: color }]}>
             <Text>{title}</Text>
         </View>
     );
@@ -31,34 +32,21 @@ function HomeScreen() {
     )
 }
 
+
+
 const styles = StyleSheet.create({
     mainContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF'
-    },
-    textContainer: {
-        height: 60,
-        width: '100%',
-        backgroundColor: 'gray',
-        justifyContent: 'center',
-        alignItems: 'center'
+        width: '95%',
+        flexDirection: 'column',
+        justifyContent: 'flex-start'
     },
     topText: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: 'white'
+        color: colors.Primary,
+        fontSize: 20,
     },
-    gridItem: {
-        flex: 1,
-        margin: 15,
-        height: 150,
-        borderRadius: 10,
-        overflow: 'hidden',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
+    textContainer: {
+        marginBottom: 20,
+    }
 });
 
 export default HomeScreen;
