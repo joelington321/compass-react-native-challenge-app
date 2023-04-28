@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import colors from '../../global/colors';
 
 
 const styles = StyleSheet.create({
@@ -8,7 +9,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start'
     },
     topText:{
-        color:'D78f3C',
+        color:colors.Primary,
         fontSize:20,
     },
     textContainer:{

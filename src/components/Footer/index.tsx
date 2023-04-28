@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet } from 'react-native';
 import React from 'react';
+import colors from '../../global/colors';
 
 interface FooterProps {
   normalText: string;
@@ -19,18 +20,18 @@ const Footer = ({ normalText, clickableText, onPress }: FooterProps) => {
 
 const styles = StyleSheet.create({
   footerContainer: {
-    backgroundColor: '#2D2D2D',
+    backgroundColor: colors.Background,
     alignItems: 'center',
     justifyContent: 'center',
     borderTopWidth: 1,
-    borderColor: '#D78F3C',
+    borderColor: colors.Primary,
     alignSelf: 'stretch',
     height: 50,
     width: 400,
     flexDirection: 'row'
   },
   linkFooter: {
-    color: '#D78F3C',
+    color: colors.Primary,
   }
 });
 

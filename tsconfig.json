@@ -24,7 +24,8 @@
    // "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "noEmitHelpers": true
+    "noEmitHelpers": true,
+    "allowImportingTsExtensions": true
   },
   "exclude": [
     "App.js",

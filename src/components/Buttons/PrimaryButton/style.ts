@@ -1,8 +1,9 @@
 import { StyleSheet} from 'react-native';
+import colors from '../../../global/colors';
 
 const styles = StyleSheet.create({
     buttonStyle: {
-      backgroundColor: '#D78F3C',
+      backgroundColor: colors.Primary,
       borderRadius: 25,
       width: 350,
       height: 50,
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
   
     },
     textButton: {
-      color: '#F5F5F5',
+      color: colors.textButton,
       textAlign: 'center',
   
     }

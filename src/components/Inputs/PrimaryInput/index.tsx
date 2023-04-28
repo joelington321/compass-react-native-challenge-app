@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextInput, Text, View, Image } from 'react-native';
 import styles from './style';
+import colors from '../../../global/colors';
 
 interface PrimaryInputProps {
     placeholder: string;
@@ -18,7 +19,7 @@ const PrimaryInput = ({ placeholder, errorMsg, secureTextEntry, icon, value, err
 
 
     //Checks if there is an error or not, if there is, it displays the error and adds the border
-    const borderColor = error ? '#FF4B4B' : '#656262';
+    const borderColor = error ? colors.Warning : colors.Input;
     const displayError = error ? 'flex' : 'none';
 
     const handleOnChangeText = (text: string) => {
@@ -35,7 +36,7 @@ const PrimaryInput = ({ placeholder, errorMsg, secureTextEntry, icon, value, err
                 <TextInput
                     style={{ flex: 1 }}
                     placeholder={placeholder}
-                    placeholderTextColor={'#a8a8a8'}
+                    placeholderTextColor={colors.InputPlaceholder}
                     secureTextEntry={secureTextEntry}
                     value={value}
                     onChangeText={handleOnChangeText}

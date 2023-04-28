@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
+import colors from '../../global/colors.tsx';
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#2D2D2D',
+      backgroundColor: colors.Background,
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -17,12 +18,12 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     welcomeText: {
-      color: '#D78f3C',
+      color: colors.Primary,
       fontSize: 35,
       fontWeight: 'bold',
     },
     textInput: {
-      color: '#656262',
+      color: colors.Input,
       alignItems: 'center',
     },
     footerContainer: {

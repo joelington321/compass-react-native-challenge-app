@@ -1,4 +1,6 @@
 import {StyleSheet} from 'react-native';
+import colors from '../../../global/colors';
+import { color } from 'react-native-reanimated';
 
 const styles = StyleSheet.create({
     primaryInputContainer: {
@@ -7,13 +9,13 @@ const styles = StyleSheet.create({
     errorMsg: {
         margin: 3,
         justifyContent: 'flex-start',
-        color: '#FF4B4B',
+        color: colors.Warning,
         fontSize: 12,
         paddingLeft: 15,
 
     },
     inputBackground: {
-        backgroundColor: '#656262',
+        backgroundColor: colors.Input,
         borderRadius: 25,
         justifyContent: 'flex-start',
         width: 350,
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 16,
-        borderColor: '#656262',
+        borderColor: colors.Warning,
         borderWidth: 1
     },
     icon: {
