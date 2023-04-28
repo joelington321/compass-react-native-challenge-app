@@ -42,7 +42,18 @@ const styles = StyleSheet.create({
   termsText: {
     paddingLeft: 10,
     textAlign: 'left',
-  }
+  },
+  errorMsgContainer:{
+    flexDirection:'column',
+  },
+  errorMsg: {
+    margin: 3,
+    display: 'flex',
+    justifyContent: 'flex-start',
+    color: '#FF4B4B',
+    fontSize: 12,
+    paddingLeft: 15,
+}
 });
 
 

@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
     },
     errorMsg: {
         margin: 3,
-        display: 'flex',
         justifyContent: 'flex-start',
         color: '#FF4B4B',
         fontSize: 12,
@@ -22,7 +21,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 16,
-        borderColor: '#FF4B4B',
+        borderColor: '#656262',
         borderWidth: 1
     },
     icon: {

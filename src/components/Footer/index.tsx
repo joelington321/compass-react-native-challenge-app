@@ -27,11 +27,20 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     height: 50,
     width: 400,
+    flexDirection: 'row'
   },
   linkFooter: {
     color: '#D78F3C',
   }
 });
+
+
+
+
+
+
+
+
 
 
 

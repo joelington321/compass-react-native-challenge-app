@@ -26,7 +26,12 @@ const SignupScreen = ({ navigation }: SignupScreenProps) => {
                     <PrimaryInput icon={require('../../assets/icons/icon_lock.png')} placeholder='Your password' errorMsg='Please enter a valid password.' secureTextEntry />
                     <View style={styles.termsContainer}>
                         <Checkbox color='#ffffff' value={isChecked} onValueChange={setChecked} />
-                        <Text style={styles.termsText}>Agree to Terms and conditions</Text>
+                        <View style={styles.errorMsgContainer}>
+                            <Text style={styles.termsText}>Agree to Terms and conditions</Text>
+                            <View>
+                                <Text style={styles.errorMsg}>Please accept the terms.</Text>
+                            </View>
+                        </View>
                     </View>
                     <PrimaryButton onPress={() => navigation.navigate("HomeScreen")}>CREATE ACCOUNT</PrimaryButton>
                 </View>
