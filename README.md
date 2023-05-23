@@ -2,7 +2,7 @@
 # Challenge III
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
 
-This project is the Second Compass Challenge, which is a mobile application developed using React Native and CSS. The main goal of this challenge is to use the best practices and structuring of React Native and CSS, covering the main concepts and practices of these technologies.
+This project is the Final Compass Challenge, which is a mobile application developed using React Native and CSS. The main goal of this challenge is to use the best practices and structuring of React Native and CSS, covering the main concepts and practices of these technologies.
 
 ## Features
 
