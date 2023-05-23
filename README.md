@@ -1,4 +1,5 @@
-# Project Name
+![](https://github.com/joelington321/compass-react-native-challenge-app/assets/69323457/4b480ebf-d0cb-4d61-9e76-9ea0d7eac6af)
+# Challenge III
 
 This project is the Second Compass Challenge, which is a mobile application developed using React Native and CSS. The main goal of this challenge is to use the best practices and structuring of React Native and CSS, covering the main concepts and practices of these technologies.
 
