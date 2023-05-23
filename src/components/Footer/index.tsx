@@ -1,6 +1,7 @@
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View } from 'react-native';
 import React from 'react';
-import colors from '../../global/colors';
+import styles from './style';
+
 
 interface FooterProps {
   normalText: string;
@@ -17,31 +18,6 @@ const Footer = ({ normalText, clickableText, onPress }: FooterProps) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  footerContainer: {
-    backgroundColor: colors.Background,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderTopWidth: 1,
-    borderColor: colors.Primary,
-    alignSelf: 'stretch',
-    height: 50,
-    width: 400,
-    flexDirection: 'row'
-  },
-  linkFooter: {
-    color: colors.Primary,
-  }
-});
-
-
-
-
-
-
-
-
 
 
 

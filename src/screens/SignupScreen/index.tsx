@@ -18,17 +18,17 @@ const icons = {
 }
 
 const SignupScreen = ({ navigation }: SignupScreenProps) => {
-    const [isChecked, setChecked] = useState(false);
+    const [isChecked, setChecked] = useState<boolean>(false);
     const [checkboxError, setCheckboxError] = useState<'flex' | 'none'>('none');
     //functions to tracker the value of email input
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState<string>("");
     //use of callback function for save after the email text in <primaryInput> is change
     const emailInputHandler = useCallback((text: string) => {
         setEmail(text);
     }, []);
 
     //functions to tracker the value of email input
-    const [username, setUsername] = useState("");
+    const [username, setUsername] = useState<string>("");
     //use of callback function for save after the email text in <primaryInput> is change
     const usernameInputHandler = useCallback((text: string) => {
         setUsername(text);
@@ -36,16 +36,16 @@ const SignupScreen = ({ navigation }: SignupScreenProps) => {
 
 
     //functions to tracker the value of password input
-    const [password, setPassword] = useState("");
+    const [password, setPassword] = useState<string>("");
     //use of callback function for save after the password text in <primaryInput> is change
     const passwordInputHandler = useCallback((text: string) => {
         setPassword(text);
     }, []);
 
     //instantiate the values of errors verify
-    const [emailError, setEmailError] = useState(false);
-    const [passwordError, setPasswordError] = useState(false);
-    const [usernameError, setUsernameError] = useState(false);
+    const [emailError, setEmailError] = useState<boolean>(false);
+    const [passwordError, setPasswordError] = useState<boolean>(false);
+    const [usernameError, setUsernameError] = useState<boolean>(false);
 
 
 
