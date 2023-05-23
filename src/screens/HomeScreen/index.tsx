@@ -2,13 +2,14 @@ import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import styles from './style';
 
-const Card = () => {
-    return <View style={styles.card} />;
-};
 
 const HomeScreen = () => {
     const data = [1, 2, 3, 4, 5, 6, 7, 8];
 
+const Card = () => {
+    return <View style={styles.card} />;
+};
+    
     const renderItem = () => {
         return <Card />;
     };
