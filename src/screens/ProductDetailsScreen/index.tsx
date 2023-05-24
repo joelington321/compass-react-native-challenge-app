@@ -1,10 +1,14 @@
+import React from 'react';
 import { View, Text } from 'react-native';
+import MoreOrLess from '../../components/MoreOrLess';
+import styles from './style';
 
 function ProductDetailsScreen() {
 
     return(
-        <View> 
+        <View style={styles.Conteiner}> 
         <Text> Product Screen</Text>
+        <MoreOrLess></MoreOrLess>
          </View>
     );
 };
