@@ -7,15 +7,22 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.Background,
     },
-    containerCards: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colors.Background,
-        paddingVertical: 10,
+    headerContainer:{
+        justifyContent: 'space-between',
+        flexDirection: 'row',
     },
-    header: {
+    containerCards: {
+        alignItems: 'center',
+        marginHorizontal:10,
+    },
+    headerUser: {
         fontSize: 20,
         color: colors.Primary,
+        justifyContent: 'center',
+    },
+    welcomeText: {
+        fontSize: 14,
+        color: colors.InputPlaceholder,
         justifyContent: 'center',
     },
     textContainer: {
@@ -24,14 +31,16 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         paddingBottom: 25,
     },
-    card: {
-        width: 150,
-        height: 200,
-        backgroundColor: 'white',
-        margin: 10,
-        borderRadius: 10,
-        elevation: 2,
+    columnWrapper:{
+        justifyContent: 'space-between',
+        
+    },cartContainer:{
+        alignContent: 'center',
+        margin: 30
     },
+    cartImage:{
+        
+    }
 });
 
 export default styles;
