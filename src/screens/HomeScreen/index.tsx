@@ -1,14 +1,23 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import styles from './style';
 
-const Card = () => {
-    return <View style={styles.card} />;
+
+interface HomeScreenProp{
+    navigation: NavigationProp<ParamListBase>;
 };
 
-const HomeScreen = () => {
+const HomeScreen = ( { navigation }: HomeScreenProp ) => {
     const data = [1, 2, 3, 4, 5, 6, 7, 8];
 
+    const onPress = () => {
+        navigation.navigate('ProductDetailsScreen');
+    }
+    const Card = () => {
+        return <TouchableOpacity onPress={onPress} style={styles.card} />;
+};
+    
     const renderItem = () => {
         return <Card />;
     };

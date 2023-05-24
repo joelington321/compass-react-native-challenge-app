@@ -3,6 +3,7 @@ import React from 'react';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
 import HomeScreen from '../screens/HomeScreen';
+import ProductDetailsScreen from '../screens/ProductDetailsScreen/intex';
 import styles from './style';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -46,7 +47,14 @@ const AppNavigation = () => {
                     component={HomeScreen}
                     options={{ headerShown: false }}
                 />
+                <Stack.Screen
+                    name="ProductDetailsScreen"
+                    component={ProductDetailsScreen}
+                    options={{ headerTitle: '',
+                    headerTransparent: true,}}
+                />
             </Stack.Navigator>
+            
         </NavigationContainer>
     );
 };
