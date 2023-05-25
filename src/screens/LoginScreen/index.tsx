@@ -41,7 +41,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
 
     //verify if the fields is empty and display a error msg
     if (email !== '' && password !== '') {
-      navigation.navigate("HomeScreen");
+      navigation.navigate("HomeScreen", {email});
     } else {
       if (email === '') {
         setEmailError(true);

@@ -1,55 +1,46 @@
-import React from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, Image, TouchableOpacity, SafeAreaView } from 'react-native';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import styles from './style';
 import Product from '../../components/Item/Product';
+import axios from 'axios';
 
 interface HomeScreenProp {
     navigation: NavigationProp<ParamListBase>;
 }
 
-const HomeScreen = ({ navigation }: HomeScreenProp) => {
-    const products = [
-        {
-            id: 1,
-            title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-            price: 109.95,
-            description:
-                "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-            category: "men's clothing",
-            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-            rate: 3.9,
-            count: 120,
-        },
-        {
-            id: 2,
-            title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-            price: 109.95,
-            description:
-                "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-            category: "men's clothing",
-            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-            rate: 3.9,
-            count: 120,
-        },
-        {
-            id: 3,
-            title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-            price: 109.95,
-            description:
-                "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-            category: "men's clothing",
-            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-            rate: 3.9,
-            count: 120,
-        },
-    ];
+interface ProductData {
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    category: string;
+    image: string;
+    rating: {
+        rate: number;
+        count: number;
+    };
+}
+
+const HomeScreen = ({ route }, { navigation }: HomeScreenProp) => {
+    const [products, setProducts] = useState<ProductData[]>([]);
+
+    useEffect(() => {
+        axios
+            .get('https://fakestoreapi.com/products/')
+            .then((response) => {
+                setProducts(response.data);
+            })
+            .catch(() => {
+                console.log('Error fetching data');
+            });
+    }, []);
 
     const onPressProduct = () => {
         navigation.navigate('ProductDetailsScreen');
     };
 
-    const renderProduct = ({ item }: { item: typeof products[0] }) => (
+    const renderProduct = ({ item }: { item: ProductData }) => (
         <TouchableOpacity onPress={onPressProduct}>
             <Product
                 id={item.id}
@@ -58,8 +49,8 @@ const HomeScreen = ({ navigation }: HomeScreenProp) => {
                 description={item.description}
                 category={item.category}
                 image={item.image}
-                rate={item.rate}
-                count={item.count}
+                rate={item.rating.rate}
+                count={item.rating.count}
                 amount={1}
             />
         </TouchableOpacity>
@@ -70,7 +61,7 @@ const HomeScreen = ({ navigation }: HomeScreenProp) => {
             <View style={styles.headerContainer}>
                 <View style={styles.textContainer}>
                     <Text style={styles.welcomeText}>Welcome</Text>
-                    <Text style={styles.headerUser}>Welliton</Text>
+                    <Text style={styles.headerUser}>{route.params.email}</Text>
                 </View>
                 <View style={styles.cartContainer}>
                     <Image
@@ -79,7 +70,7 @@ const HomeScreen = ({ navigation }: HomeScreenProp) => {
                     />
                 </View>
             </View>
-            <View style={styles.containerCards}>
+            <SafeAreaView style={styles.containerCards}>
                 <FlatList
                     data={products}
                     renderItem={renderProduct}
@@ -87,7 +78,7 @@ const HomeScreen = ({ navigation }: HomeScreenProp) => {
                     numColumns={2}
                     columnWrapperStyle={styles.columnWrapper}
                 />
-            </View>
+            </SafeAreaView>
         </View>
     );
 };
