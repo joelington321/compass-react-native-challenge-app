@@ -13,9 +13,6 @@ enum StateDisplay {
     Info
 }
 
-
-
-
 interface ProductProps {
     id: number;
     title: string;

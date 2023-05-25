@@ -3,31 +3,20 @@ import { View, Text, FlatList, Image, TouchableOpacity, SafeAreaView } from 'rea
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import styles from './style';
 import Product from '../../components/Item/Product';
-import axios from 'axios';
+import { fetchProducts } from '../../api/storeapi';
+import { ProductData } from '../../global/types';
+
 
 interface HomeScreenProp {
     navigation: NavigationProp<ParamListBase>;
 }
 
-interface ProductData {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-    rating: {
-        rate: number;
-        count: number;
-    };
-}
 
-const HomeScreen = ({ route }, { navigation }: HomeScreenProp) => {
+const HomeScreen = ({ navigation }: HomeScreenProp) => {
     const [products, setProducts] = useState<ProductData[]>([]);
 
     useEffect(() => {
-        axios
-            .get('https://fakestoreapi.com/products/')
+        fetchProducts()
             .then((response) => {
                 setProducts(response.data);
             })
@@ -61,7 +50,7 @@ const HomeScreen = ({ route }, { navigation }: HomeScreenProp) => {
             <View style={styles.headerContainer}>
                 <View style={styles.textContainer}>
                     <Text style={styles.welcomeText}>Welcome</Text>
-                    <Text style={styles.headerUser}>{route.params.email}</Text>
+                    <Text style={styles.headerUser}>Welliton</Text>
                 </View>
                 <View style={styles.cartContainer}>
                     <Image

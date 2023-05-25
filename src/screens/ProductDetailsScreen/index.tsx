@@ -5,11 +5,11 @@ import styles from './style';
 
 function ProductDetailsScreen() {
 
-    return(
-        <View style={styles.Conteiner}> 
-        <Text> Product Screen</Text>
-        <MoreOrLess></MoreOrLess>
-         </View>
+    return (
+        <View style={styles.Conteiner}>
+            <Text> Product Screen</Text>
+            <MoreOrLess></MoreOrLess>
+        </View>
     );
 };
 
