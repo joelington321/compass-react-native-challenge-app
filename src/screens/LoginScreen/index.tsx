@@ -5,15 +5,13 @@ import Footer from '../../components/Footer';
 import PrimaryInput from '../../components/Inputs/PrimaryInput';
 import styles from './style';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
+import { icons } from '../../global/types';
 
 interface LoginScreenProps {
   navigation: NavigationProp<ParamListBase>;
 }
 
-const icons = {
-  iconEmail: require('../../assets/icons/icon_mail.png'),
-  iconPassword: require('../../assets/icons/icon_lock.png'),
-}
+
 
 const LoginScreen = ({ navigation }: LoginScreenProps) => {
 
@@ -41,7 +39,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
 
     //verify if the fields is empty and display a error msg
     if (email !== '' && password !== '') {
-      navigation.navigate("HomeScreen", {email});
+      navigation.navigate("HomeScreen", { email });
     } else {
       if (email === '') {
         setEmailError(true);

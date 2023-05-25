@@ -14,7 +14,7 @@ const MoreOrLess = () => {
       <Pressable disabled={disable} onPress={less} style={styles.Button}>
         <Text style={styles.textButton}> - </Text>
       </Pressable>
-      <Text style={styles.textButton}> {amount} </Text>
+      <Text style={styles.textMid}> {amount} </Text>
       <Pressable onPress={more} style={styles.Button}>
         <Text style={styles.textButton}> + </Text>
       </Pressable>
