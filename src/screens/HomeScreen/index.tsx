@@ -4,7 +4,7 @@ import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import styles from './style';
 import Product from '../../components/Item/Product';
 import { fetchProducts } from '../../api/storeapi';
-import { ProductData } from '../../global/types';
+import { ProductData, StateDisplay, icons } from '../../global/types';
 
 
 interface HomeScreenProp {
@@ -13,8 +13,10 @@ interface HomeScreenProp {
 
 
 const HomeScreen = ({ navigation }: HomeScreenProp) => {
+    //the products vector 
     const [products, setProducts] = useState<ProductData[]>([]);
 
+    //this use effect calls the products collected by the api
     useEffect(() => {
         fetchProducts()
             .then((response) => {
@@ -25,12 +27,14 @@ const HomeScreen = ({ navigation }: HomeScreenProp) => {
             });
     }, []);
 
-    const onPressProduct = () => {
-        navigation.navigate('ProductDetailsScreen');
+    //Call the page product details and send the item information
+    const onPressProduct = (item: ProductData) => {
+        navigation.navigate('ProductDetailsScreen', { item });
     };
 
+    //the funciton to render a item in the flatlist
     const renderProduct = ({ item }: { item: ProductData }) => (
-        <TouchableOpacity onPress={onPressProduct}>
+        <TouchableOpacity onPress={() => onPressProduct(item)}>
             <Product
                 id={item.id}
                 title={item.title}
@@ -41,9 +45,11 @@ const HomeScreen = ({ navigation }: HomeScreenProp) => {
                 rate={item.rating.rate}
                 count={item.rating.count}
                 amount={1}
+                state={StateDisplay.Home}
             />
         </TouchableOpacity>
     );
+
 
     return (
         <View style={styles.container}>
@@ -54,7 +60,7 @@ const HomeScreen = ({ navigation }: HomeScreenProp) => {
                 </View>
                 <View style={styles.cartContainer}>
                     <Image
-                        source={require('../../assets/icons/icon_cart.png')}
+                        source={icons.iconCart}
                         style={styles.cartImage}
                     />
                 </View>

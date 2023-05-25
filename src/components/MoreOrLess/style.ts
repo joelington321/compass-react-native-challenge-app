@@ -5,7 +5,7 @@ import colors from '../../global/colors';
 const styles = StyleSheet.create({
     Conteiner: {
         flexDirection: 'row',
-        margin: 50,
+        margin: 20,
     },
     Button: {
         borderRadius: 100,
@@ -18,7 +18,15 @@ const styles = StyleSheet.create({
       textButton: {
         color: colors.Primary,
         textAlign: 'center',
-    
+        fontSize: 35,
+        fontWeight :'bold',
+        flex:1
+      },
+      textMid: {
+        color: colors.Primary,
+        textAlign: 'center',
+        fontSize: 30,
+        marginTop:5
       }
 });
 

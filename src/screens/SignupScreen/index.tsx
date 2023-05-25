@@ -6,16 +6,12 @@ import Footer from '../../components/Footer';
 import PrimaryInput from '../../components/Inputs/PrimaryInput';
 import styles from './style';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
+import { icons } from '../../global/types';
 
 interface SignupScreenProps {
     navigation: NavigationProp<ParamListBase>; // define type of navigation prop
 }
 
-const icons = {
-    iconEmail: require('../../assets/icons/icon_mail.png'),
-    iconPassword: require('../../assets/icons/icon_lock.png'),
-    iconUser: require('../../assets/icons/icon_user.png')
-}
 
 const SignupScreen = ({ navigation }: SignupScreenProps) => {
     const [isChecked, setChecked] = useState<boolean>(false);

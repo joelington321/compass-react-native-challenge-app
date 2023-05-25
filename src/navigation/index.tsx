@@ -7,6 +7,7 @@ import ProductDetailsScreen from '../screens/ProductDetailsScreen/index';
 import styles from './style';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { icons } from '../global/types';
 
 const Stack = createStackNavigator();
 
@@ -17,7 +18,7 @@ interface BackButtonProps {
 const BackButton = ({ onPress }: BackButtonProps) => {
     return (
         <TouchableOpacity onPress={onPress}>
-            <Image style={styles.backImg} source={require('../assets/icons/icon_back.png')} />
+            <Image style={styles.backImg} source={icons.iconBack} />
         </TouchableOpacity>
     );
 };
