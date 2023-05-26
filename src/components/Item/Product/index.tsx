@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Text, View, Image, Pressable } from 'react-native';
-import { styleInfo, styleHome } from './style';
+import { styleInfo, styleHome, styleCart } from './style';
 import { StateDisplay } from '../../../global/types';
-import MoreOrLess from '../../MoreOrLess';
+import MoreOrLess from '../../Inputs/MoreOrLess';
 import StarRow from '../../Ratingstars';
 
 const favorited = {
@@ -42,7 +42,7 @@ const Product = ({
 
     //save the state of favorited
     const [isFavorited, setIsFavorited] = useState<boolean>(false);
-
+    const [isRemoved, setIsRemoved] = useState<boolean>(false);
 
     const formattedPrice = price.toLocaleString('pt-BR', {
         minimumFractionDigits: 2,
@@ -50,6 +50,10 @@ const Product = ({
 
     const toggleFavorite = () => {
         setIsFavorited(!isFavorited);
+    };
+
+    const handleRemove = () => {
+        setIsRemoved(true);
     };
 
     //if the screen that called the product is the home screen, it will have this format 
@@ -122,12 +126,29 @@ const Product = ({
     //if the screen that called the product is the Cart screen, it will have this format 
     if (state === StateDisplay.Cart) {
         return (
-            <Text>Cart Display</Text>
-        )
+            <View style={styleCart.cardContainer}>
 
+                {image && <Image source={{ uri: image }} style={styleCart.image} />}
+                <View style={styleCart.cardInfoContainer}>
+                    <Text style={styleCart.titleText}>{title}</Text>
+                    <View style={styleCart.priceContainer}>
+                        <Text style={styleCart.priceText}>R$ {formattedPrice}</Text>
+                    </View>
+                </View>
+                <Pressable onPress={handleRemove}>
+                    <View style={styleCart.removedContainer}>
+                        <Text style={styleCart.removedText}>-</Text>
+                    </View>
+                </Pressable>
+            </View>
+        );
+    }
+
+    if (isRemoved) {
+        return null;
     } else {
         return (
-            <Text>ERROR MSG</Text>
+            <Text>ERROR TEXT</Text>
         )
     }
 };
