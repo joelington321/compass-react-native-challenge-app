@@ -137,3 +137,66 @@ export const styleInfo = StyleSheet.create({
 });
 
 
+export const styleCart = StyleSheet.create({
+    cardContainer: {
+      height: 150,
+      width: 350,
+      backgroundColor: colors.CardProduct,
+      marginBottom: 20,
+      borderRadius: 20,
+      padding: 10,
+      flexDirection: 'row'
+    },
+    priceContainer: {
+      margin: 10,
+      height: 40,
+      width: 130,
+      backgroundColor: colors.Background,
+      borderRadius: 8,
+      alignItems: 'center',
+    },
+    cardInfoContainer: {
+      flex:1,
+      alignSelf: 'flex-end',
+      marginTop: 10,
+      flexDirection: 'column', // Add this line to make the content display in the same row
+    },
+    titleText: {
+      color: '#F5F5F5',
+      fontSize: 12,
+      fontWeight: 'bold',
+      flex: 2,
+      marginLeft: 13
+    },
+    priceText: {
+      color: colors.Primary,
+      fontSize: 16,
+      fontWeight: 'bold',
+      textAlign: 'center', // Add this line to align the text in the center
+      flex: 1,
+      margin: 4
+      
+    },
+    image: {
+      width: 120,
+      height: 120,
+      alignSelf: 'center',
+      margin: 8
+    },
+    removedContainer:{
+      borderRadius: 50,
+        backgroundColor: colors.Warning,
+        width: 50,
+        height: 50,
+        justifyContent: 'center',
+    },
+    removedText:{
+      textAlign: 'center',
+      fontSize: 35,
+      fontWeight :'bold',
+      display: 'flex', 
+      justifyContent: 'center', 
+    }
+  });
+
+

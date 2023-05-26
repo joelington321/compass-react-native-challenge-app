@@ -36,7 +36,7 @@ function ProductDetailsScreen({ route }: ProductDetailsScreenProps) {
                     rate={item.rating.rate}
                     count={item.rating.count}
                     amount={1}
-                    state={StateDisplay.Info}
+                    state={StateDisplay.Cart}
                 />
             </View>
         </View>
