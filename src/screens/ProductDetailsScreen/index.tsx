@@ -1,8 +1,7 @@
-import React from 'react';
-import { View, Image } from 'react-native';
-import { RouteProp } from '@react-navigation/native';
-import { ParamListBase } from '@react-navigation/native';
-
+import React, { useState } from 'react';
+import { View, Image, Pressable, Text } from 'react-native';
+import { RouteProp, NavigationProp, ParamListBase } from '@react-navigation/native';
+import { useCart } from '../../api/context';
 import styles from './style';
 import Product from '../../components/Item/Product';
 import { StateDisplay, ProductData, icons } from '../../global/types';
@@ -11,20 +10,36 @@ type ProductDetailsRouteProp = RouteProp<ParamListBase, 'ProductDetailsScreen'>;
 
 interface ProductDetailsScreenProps {
     route: ProductDetailsRouteProp;
+    navigation: NavigationProp<ParamListBase>;
 }
 
-//product details receive a item to display 
-function ProductDetailsScreen({ route }: ProductDetailsScreenProps) {
+function ProductDetailsScreen({ route, navigation }: ProductDetailsScreenProps) {
     const { item } = route.params as { item: ProductData };
+    const { addToCart, cartItems } = useCart();
+    const existingCartItem = cartItems.find((cartItem) => cartItem.id === item.id);
+    const [amount, setAmount] = useState<number>(existingCartItem ? existingCartItem.quantity : 1);
+
+    const onPressCart = () => {
+        navigation.navigate('CartScreen');
+    };
+
+    const handleAddToCart = () => {
+        // Adicione o item ao carrinho
+        addToCart({
+            id: item.id,
+            title: item.title,
+            price: item.price,
+            quantity: amount,
+        });
+    };
 
     return (
         <View style={styles.container}>
-            <View style={styles.cartContainer}>
-                <Image
-                    source={icons.iconCart}
-                    style={styles.cartImage}
-                />
-            </View>
+            <Pressable onPress={onPressCart}>
+                <View style={styles.cartContainer}>
+                    <Image source={icons.iconCart} style={styles.cartImage} />
+                </View>
+            </Pressable>
             <View style={styles.productContainer}>
                 <Product
                     id={item.id}
@@ -35,8 +50,10 @@ function ProductDetailsScreen({ route }: ProductDetailsScreenProps) {
                     image={item.image}
                     rate={item.rating.rate}
                     count={item.rating.count}
-                    amount={1}
                     state={StateDisplay.Info}
+                    onAddToCart={handleAddToCart}
+                    amount={amount}
+
                 />
             </View>
         </View>

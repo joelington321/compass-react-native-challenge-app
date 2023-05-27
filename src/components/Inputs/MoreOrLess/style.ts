@@ -3,11 +3,11 @@ import colors from '../../../global/colors';
 
 
 const styles = StyleSheet.create({
-    Conteiner: {
+  container: {
         flexDirection: 'row',
         margin: 20,
     },
-    Button: {
+    button: {
         borderRadius: 100,
         backgroundColor: colors.Background,
         width: 50,
