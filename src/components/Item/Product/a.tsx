@@ -7,7 +7,7 @@ import StarRow from '../../Ratingstars';
 
 const favorited = {
     disabled: require('../../../assets/icons/disabledfavorite.png'),
-    activated: require('../../../assets/icons/enabledfavorite.png'),
+    activated: require('../../../assets/icons/enabledfavorite.png')
 };
 
 interface ProductProps {
@@ -38,46 +38,24 @@ const Product = ({
     removeFromCart,
     ...props
 }: ProductProps) => {
+
+
     //save the state of favorited
     const [isFavorited, setIsFavorited] = useState<boolean>(false);
+
 
     const formattedPrice = price.toLocaleString('pt-BR', {
         minimumFractionDigits: 2,
     }); // Format the price with comma as the decimal separator
 
+
+
     const toggleFavorite = () => {
         setIsFavorited(!isFavorited);
     };
 
-    const handleRemoveFromCart = () => {
-        if (removeFromCart) {
-            removeFromCart(id);
-        }
-    };
 
-    //if the screen that called the product is the home screen, it will have this format
-    if (state === StateDisplay.Home)
-        return (
-            <View style={styleHome.cardContainer}>
-                <Text style={styleHome.titleText}>{title}</Text>
-                {image && <Image source={{ uri: image }} style={styleHome.image} />}
-                <View style={styleHome.cardBottonContainer}>
-                    <View style={styleHome.priceContainer}>
-                        <Text style={styleHome.priceText}>R$ {formattedPrice}</Text>
-                    </View>
-                    <View style={styleHome.favoritedContainer}>
-                        <Pressable onPress={toggleFavorite}>
-                            <Image
-                                source={isFavorited ? favorited.activated : favorited.disabled}
-                                style={styleHome.favoriteIcon}
-                            />
-                        </Pressable>
-                    </View>
-                </View>
-            </View>
-        );
-
-    //if the screen that called the product is the Description screen, it will have this format
+    //if the screen that called the product is the Description screen, it will have this format 
     if (state === StateDisplay.Info) {
         return (
             <View style={styleInfo.cardContainer}>
@@ -86,7 +64,9 @@ const Product = ({
                     <View style={styleInfo.favoritedContainer}>
                         <Pressable onPress={toggleFavorite}>
                             <Image
-                                source={isFavorited ? favorited.activated : favorited.disabled}
+                                source={
+                                    isFavorited ? favorited.activated : favorited.disabled
+                                }
                                 style={styleInfo.favoriteIcon}
                             />
                         </Pressable>
@@ -101,42 +81,27 @@ const Product = ({
                     <View style={styleInfo.priceContainer}>
                         <Text style={styleInfo.priceText}>R$ {formattedPrice}</Text>
                     </View>
-                    <MoreOrLess />
+                    <MoreOrLess amount={amount} onAmountChange={setAmount} />
+
                 </View>
 
                 <View style={styleInfo.descriptionContainer}>
-                    <Text style={styleInfo.descriptionText}>{description}</Text>
+                    <Text style={styleInfo.descriptionText}>
+                        {description}
+                    </Text>
                 </View>
                 <Pressable onPress={props.onAddToCart}>
                     <View style={styleInfo.addToCartButton}>
                         <Text style={styleInfo.addToCartText}>ADD TO CART</Text>
                     </View>
                 </Pressable>
-            </View>
-        );
-    }
-
-    //if the screen that called the product is the Cart screen, it will have this format
-    if (state === StateDisplay.Cart) {
+            </View >
+        )
+    } else {
         return (
-            <View style={styleCart.cardContainer}>
-                {image && <Image source={{ uri: image }} style={styleCart.image} />}
-                <View style={styleCart.cardInfoContainer}>
-                    <Text style={styleCart.titleText}>{title}</Text>
-                    <View style={styleCart.priceContainer}>
-                        <Text style={styleCart.priceText}>R$ {formattedPrice}</Text>
-                    </View>
-                </View>
-                <Pressable onPress={handleRemoveFromCart}>
-                    <View style={styleCart.removedContainer}>
-                        <Text style={styleCart.removedText}>-</Text>
-                    </View>
-                </Pressable>
-            </View>
-        );
+            <Text>ERROR TEXT</Text>
+        )
     }
-
-    return <Text>ERROR TEXT</Text>;
 };
 
 export default Product;

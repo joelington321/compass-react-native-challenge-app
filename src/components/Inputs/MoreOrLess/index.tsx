@@ -3,19 +3,19 @@ import { View, Text, Pressable } from "react-native";
 import styles from "./style";
 
 const MoreOrLess = () => {
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(1);
 
   const more = () => setAmount(amount + 1);
   const less = () => setAmount(amount - 1);
-  const disable = amount === 0;
+  const disable = amount === 1;
 
   return (
-    <View style={styles.Conteiner}>
-      <Pressable disabled={disable} onPress={less} style={styles.Button}>
+    <View style={styles.container}>
+      <Pressable disabled={disable} onPress={less} style={styles.button}>
         <Text style={styles.textButton}> - </Text>
       </Pressable>
       <Text style={styles.textMid}> {amount} </Text>
-      <Pressable onPress={more} style={styles.Button}>
+      <Pressable onPress={more} style={styles.button}>
         <Text style={styles.textButton}> + </Text>
       </Pressable>
     </View>

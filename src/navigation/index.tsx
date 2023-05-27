@@ -3,6 +3,7 @@ import React from 'react';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
 import HomeScreen from '../screens/HomeScreen';
+import CartScreen from '../screens/CartScreen'
 import ProductDetailsScreen from '../screens/ProductDetailsScreen/index';
 import styles from './style';
 import { NavigationContainer } from '@react-navigation/native';
@@ -51,9 +52,21 @@ const AppNavigation = () => {
                 <Stack.Screen
                     name="ProductDetailsScreen"
                     component={ProductDetailsScreen}
+                    options={({ navigation }) => ({
+                        headerLeft: () => (
+                            <BackButton onPress={() => navigation.goBack()} />
+                        ),
+                        headerTitle: '',
+                        headerTransparent: true,
+                    })}
+                />
+                <Stack.Screen
+                    name="CartScreen"
+                    component={CartScreen}
                     options={{
                         headerTitle: '',
                         headerTransparent: true,
+                        headerLeft: () => null, // Remove the back button
                     }}
                 />
             </Stack.Navigator>
