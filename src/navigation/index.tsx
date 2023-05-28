@@ -8,9 +8,12 @@ import ProductDetailsScreen from '../screens/ProductDetailsScreen/index';
 import styles from './style';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { icons } from '../global/types';
+import colors from '../global/colors';
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 interface BackButtonProps {
     onPress: () => void;
@@ -46,7 +49,7 @@ const AppNavigation = () => {
                 />
                 <Stack.Screen
                     name="HomeScreen"
-                    component={HomeScreen}
+                    component={HomeTab}
                     options={{ headerShown: false }}
                 />
                 <Stack.Screen
@@ -70,9 +73,49 @@ const AppNavigation = () => {
                     }}
                 />
             </Stack.Navigator>
-
         </NavigationContainer>
     );
 };
-
+const HomeTab = () => {
+    return(
+        <Tab.Navigator
+        initialRouteName='HOME'
+        screenOptions={{
+            tabBarActiveTintColor: colors.Primary,
+            headerShown: false,
+            tabBarStyle:{
+                position: 'absolute',
+                backgroundColor: '#2D2D2D',
+                borderTopWidth: 0,
+            },
+        }}>
+            <Tab.Screen
+                name='HOME'
+                component={HomeScreen}
+                options={{
+                    tabBarIcon: ({ focused, color, size }) => (
+                        <Image 
+                          source={
+                            focused
+                              ? icons.iconHomeF
+                              : /*icons.iconHomeBar*/ ''} /*exportar o icone para ca*/
+                              
+                             />),
+                    }}
+            />
+            <Tab.Screen
+            name='CART'
+            component={CartScreen}
+            options={{tabBarIcon: ({ focused, color, size }) => (
+                <Image
+                  source={
+                    focused
+                      ? icons.iconCartF
+                      : icons.iconCartBar} 
+                     />),
+        
+            }}/>
+        </Tab.Navigator>
+    )
+}
 export default AppNavigation;
