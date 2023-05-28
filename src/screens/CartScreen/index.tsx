@@ -73,6 +73,8 @@ function CartScreen({ navigation }: CartScreenProp) {
                 </View>
                 <View>
                     <Text style={styles.totalValueText}>R$ {total.toFixed(2)}</Text>
+                    {total == 0.00 && <Text style={styles.totalText}> Oops, Empty Cart :( </Text>}
+                    {total == 0.00 && <Text style={styles.totalText}> Add a product</Text>} 
                 </View>
             </View>
             <FlatList

@@ -12,6 +12,16 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         color: colors.InputPlaceholder,
     },
+    emptyCart:{
+        fontSize: 32,
+        fontWeight: '600',
+        color: colors.InputPlaceholder,
+    },
+    addAProduct:{
+        fontSize: 24,
+        fontWeight: '700',
+        color: colors.InputPlaceholder,
+    },
     totalTextContainer:{
         marginBottom : 10
     },
