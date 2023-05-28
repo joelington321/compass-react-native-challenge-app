@@ -98,7 +98,7 @@ const HomeTab = () => {
                           source={
                             focused
                               ? icons.iconHomeF
-                              : /*icons.iconHomeBar*/ ''} /*exportar o icone para ca*/
+                              : icons.iconHomeBar}
                               
                              />),
                     }}
