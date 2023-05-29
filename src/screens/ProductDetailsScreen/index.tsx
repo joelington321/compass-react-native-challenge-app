@@ -5,6 +5,8 @@ import { useCart } from '../../api/context';
 import styles from './style';
 import Product from '../../components/Item/Product';
 import { StateDisplay, ProductData, icons } from '../../global/types';
+import Cart from '../../components/Cart';
+
 
 
 
@@ -15,7 +17,7 @@ interface ProductDetailsScreenProps {
     navigation: NavigationProp<ParamListBase>;
 }
 
-function ProductDetailsScreen({ route, navigation }: ProductDetailsScreenProps) {
+function ProductDetailsScreen({ route, navigation }: ProductDetailsScreenProps, props: any) {
     const { item } = route.params as { item: ProductData };
     const { addToCart, cartItems } = useCart();
     const existingCartItem = cartItems.find((cartItem) => cartItem.id === item.id);
@@ -24,37 +26,40 @@ function ProductDetailsScreen({ route, navigation }: ProductDetailsScreenProps) 
 
 
     const onPressCart = () => {
-        navigation.navigate('CartScreen');
+      navigation.navigate('CartScreen');
     };
 
     const handleAddToCart = () => {
         setIsLoading(true);
         // Adicione o item ao carrinho
-        addToCart({
-            id: item.id,
-            title: item.title,
-            price: item.price,
-            quantity: amount,
-        });
 
-        setTimeout(() => {
+          addToCart({
+              id: item.id,
+              title: item.title,
+              price: item.price,
+              quantity: amount,
+            });
+
+          
+          setTimeout(() => {
             setIsLoading(false);
             Alert.alert('Good!', 'Product added to cart!');
-        }, 3000);
+          }, 3000);
+          console.log(cartItems)
     };
+
+
 
     return (
         <View style={styles.container}>
           <Pressable onPress={onPressCart}>
-            <View style={styles.cartContainer}>
-              <Image source={icons.iconCart} style={styles.cartImage} />
-            </View>
+            <Cart/>
           </Pressable>
           <View style={styles.productContainer}>
             {isLoading ? (
               <ActivityIndicator size="large" color="#000000" />
-            ) : (
-              <Product
+              ) : (
+                <Product
                 id={item.id}
                 title={item.title}
                 price={item.price}
@@ -66,8 +71,9 @@ function ProductDetailsScreen({ route, navigation }: ProductDetailsScreenProps) 
                 state={StateDisplay.Info}
                 onAddToCart={handleAddToCart}
                 amount={amount}
-              />
-            )}
+                
+                />
+                )}
           </View>
         </View>
       );

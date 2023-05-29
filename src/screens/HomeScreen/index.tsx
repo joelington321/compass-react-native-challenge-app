@@ -5,6 +5,7 @@ import styles from './style';
 import Product from '../../components/Item/Product';
 import { fetchProducts } from '../../api/storeapi';
 import { ProductData, StateDisplay, icons } from '../../global/types';
+import Cart from '../../components/Cart';
 
 interface HomeScreenProp {
     navigation: NavigationProp<ParamListBase>;
@@ -47,6 +48,7 @@ const HomeScreen = ({ navigation }: HomeScreenProp) => {
         </TouchableOpacity>
     );
 
+
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
@@ -55,9 +57,7 @@ const HomeScreen = ({ navigation }: HomeScreenProp) => {
                     <Text style={styles.headerUser}>Welliton</Text>
                 </View>
                 <Pressable onPress={onPressCart}>
-                    <View style={styles.cartContainer}>
-                        <Image source={icons.iconCart} style={styles.cartImage} />
-                    </View>
+                    <Cart/>
                 </Pressable>
             </View>
             <SafeAreaView style={styles.containerCards}>
