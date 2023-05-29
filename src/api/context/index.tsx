@@ -50,8 +50,9 @@ export const CartProvider: React.FC = ({ children }: React.PropsWithChildren<{}>
         );
     };
 
+
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart}}>
             {children}
         </CartContext.Provider>
     );

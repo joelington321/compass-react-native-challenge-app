@@ -34,7 +34,6 @@ const PrimaryInput = ({ placeholder, errorMsg, secureTextEntry, icon, value, err
             <View style={[styles.inputBackground, { borderColor }]}>
                 {icon && <Image source={icon} style={styles.icon} />}
                 <TextInput
-                    style={{ flex: 1 }}
                     placeholder={placeholder}
                     placeholderTextColor={colors.InputPlaceholder}
                     secureTextEntry={secureTextEntry}

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Text, View, Image, Pressable } from 'react-native';
+import { Text, View, Image, Pressable, ScrollView } from 'react-native';
 import { styleInfo, styleHome, styleCart } from './style';
 import { StateDisplay } from '../../../global/types';
-import MoreOrLess from '../../Inputs/MoreOrLess';
 import StarRow from '../../Ratingstars';
+import MoreOrLess from '../../Inputs/MoreOrLess';
 
 const favorited = {
     disabled: require('../../../assets/icons/disabledfavorite.png'),
@@ -36,10 +36,12 @@ const Product = ({
     count,
     state,
     removeFromCart,
+    amount,
     ...props
 }: ProductProps) => {
     //save the state of favorited
     const [isFavorited, setIsFavorited] = useState<boolean>(false);
+    const [amountAux, setAmountAux] = useState<number>(1);
 
     const formattedPrice = price.toLocaleString('pt-BR', {
         minimumFractionDigits: 2,
@@ -93,20 +95,20 @@ const Product = ({
                     </View>
                 </View>
                 {image && <Image source={{ uri: image }} style={styleInfo.image} />}
-                <View style={styleInfo.starContainer}>
-                    <StarRow />
-                </View>
-
                 <View style={styleInfo.priceandmoreContainer}>
+                    <View style={styleInfo.starContainer}>
+                        <StarRow />
+                    </View>
                     <View style={styleInfo.priceContainer}>
                         <Text style={styleInfo.priceText}>R$ {formattedPrice}</Text>
                     </View>
-                    <MoreOrLess />
+                   
+                    <MoreOrLess setAmount={setAmountAux} amount={amountAux}/>
                 </View>
 
-                <View style={styleInfo.descriptionContainer}>
+                <ScrollView style={styleInfo.descriptionContainer}>
                     <Text style={styleInfo.descriptionText}>{description}</Text>
-                </View>
+                </ScrollView>
 
                 <Pressable onPress={props.onAddToCart}>
                     <View style={styleInfo.addToCartButton}>
@@ -122,19 +124,19 @@ const Product = ({
     //if the screen that called the product is the Cart screen, it will have this format
     if (state === StateDisplay.Cart) {
         return (
-            <View style={styleCart.cardContainer}>
-                {image && <Image source={{ uri: image }} style={styleCart.image} />}
-                <View style={styleCart.cardInfoContainer}>
-                    <Text style={styleCart.titleText}>{title}</Text>
-                    <View style={styleCart.priceContainer}>
-                        <Text style={styleCart.priceText}>R$ {formattedPrice}</Text>
+                <View style={styleCart.cardContainer}>
+                    {image && <Image source={{ uri: image }} style={styleCart.image} />}
+                    <View style={styleCart.cardInfoContainer}>
+                        <Text style={styleCart.titleText}>{title}</Text>
+                        <View style={styleCart.priceContainer}>
+                            <Text style={styleCart.priceText}>R$ {formattedPrice}</Text>
+                        </View>
                     </View>
-                </View>
-                <Pressable onPress={handleRemoveFromCart}>
-                    <View style={styleCart.removedContainer}>
-                        <Text style={styleCart.removedText}>-</Text>
-                    </View>
-                </Pressable>
+                    <Pressable onPress={handleRemoveFromCart}>
+                        <View style={styleCart.removedContainer}>
+                            <Text style={styleCart.removedText}>-</Text>
+                        </View>
+                    </Pressable>
             </View>
         );
     }

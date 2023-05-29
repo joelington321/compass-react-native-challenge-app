@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { View, Text, FlatList, TouchableOpacity, ActivityIndicator, Alert, SafeAreaView } from 'react-native';
 import { useCart } from '../../api/context';
 import styles from './style';
 import Product from '../../components/Item/Product';
@@ -34,6 +34,8 @@ function CartScreen({ navigation }: CartScreenProp) {
         getProducts();
     }, []);
 
+
+
     const onPressProduct = (item: ProductData) => {
         navigation.navigate('ProductDetailsScreen', { item });
     };
@@ -49,7 +51,8 @@ function CartScreen({ navigation }: CartScreenProp) {
 
     // Calcule o total do carrinho
     const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
+    
+    
     const renderProduct = ({ item }: { item: ProductData }) => {      
         const cartItem = cartItems.find((cartItem) => 
                 cartItem.id === item.id);
@@ -80,33 +83,35 @@ function CartScreen({ navigation }: CartScreenProp) {
 
     return (
         <View style={styles.container}>
-            <View style={styles.headerContainer}>
-                <View style={styles.totalTextContainer}>
-                    <Text style={styles.totalText}>TOTAL</Text>
-                </View>
-                <View>
+            <View style={styles.contentContainer}>
+                <View style={styles.headerContainer}>
+                    <View style={styles.totalTextContainer}>
+                        <Text style={styles.totalText}>TOTAL</Text>
+                    </View>
                     <Text style={styles.totalValueText}>R$ {total.toFixed(2)}</Text>
-                    {total == 0.00 && <Text style={styles.totalText}> Oops, Empty Cart :( </Text>}
-                    {total == 0.00 && <Text style={styles.totalText}> Add a product</Text>} 
-                </View>
+                    <View style={styles.textContainer}>
+                        {total == 0.00 && <Text style={styles.totalText}> Oops, Empty Cart :( </Text>}
+                        {total == 0.00 && <Text style={styles.totalText}> Add a product</Text>} 
+                    </View>
+                </View>             
+                    <FlatList
+                        data={products}
+                        renderItem={renderProduct}
+                        keyExtractor={(item) => item.id.toString()}
+                        numColumns={1}
+                        />
             </View>
-            <FlatList
-                data={products}
-                renderItem={renderProduct}
-                keyExtractor={(item) => item.id.toString()}
-                numColumns={1}
-            />
-            <TouchableOpacity
-                style={[styles.buyButton, (total === 0 || isLoading) && styles.disabledBuyButton]}
-                onPress={handleBuyButtonPress}
-                disabled={total === 0 || isLoading}
-            >
-                {isLoading ? (
-                    <ActivityIndicator size="small" color="white" />
-                ) : (
-                    <Text style={styles.buyButtonText}>BUY</Text>
-                )}
-            </TouchableOpacity>
+                <TouchableOpacity
+                    style={[styles.buyButton, (total === 0 || isLoading) && styles.disabledBuyButton]}
+                    onPress={handleBuyButtonPress}
+                    disabled={total === 0 || isLoading}
+                    >
+                    {isLoading ? (
+                        <ActivityIndicator size="small" color="white" />
+                        ) : (
+                            <Text style={styles.buyButtonText}>BUY</Text>
+                            )}
+                </TouchableOpacity>
 
 
   </View>

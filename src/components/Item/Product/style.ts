@@ -26,7 +26,7 @@ export const styleHome = StyleSheet.create({
     flexDirection: 'row', // Add this line to make the content display in the same row
   },
   titleText: {
-    color: '#F5F5F5',
+    color: colors.Background,
     fontSize: 12,
     fontWeight: 'bold',
     flex: 2,
@@ -80,11 +80,11 @@ export const styleInfo = StyleSheet.create({
   },
   priceandmoreContainer: {
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 40,
     flexDirection: 'row', // Add this line to make the content display in the same row
   },
   titleText: {
-    color: '#F5F5F5',
+    color: '#282729',
     fontSize: 12,
     fontWeight: 'bold',
     flex: 7,
@@ -111,7 +111,8 @@ export const styleInfo = StyleSheet.create({
     alignSelf: 'center',
   },
   descriptionContainer:{
-    margin: 15
+    margin: 15,
+    flex: 2
   },
   descriptionText:{
     fontSize: 11
@@ -128,24 +129,28 @@ export const styleInfo = StyleSheet.create({
     textAlignVertical: 'center',
     fontSize: 15,
     fontWeight: 'bold',
+    color: '#FFFFFF'
   },
   starContainer:{
     margin: 10,
     justifyContent: 'flex-start',
-    flexDirection: 'row',
+    position: 'absolute',
+    left: 5,
+    top: -40
   }
 });
 
 
 export const styleCart = StyleSheet.create({
     cardContainer: {
+      flex: 1,
       height: 150,
-      width: 350,
-      backgroundColor: colors.CardProduct,
-      marginBottom: 20,
-      borderRadius: 20,
-      padding: 10,
-      flexDirection: 'row'
+        width: 350,
+        backgroundColor: colors.CardProduct,
+        marginBottom: 20,
+        borderRadius: 20,
+        padding: 10,
+        flexDirection: 'row'
     },
     priceContainer: {
       margin: 10,
@@ -162,7 +167,7 @@ export const styleCart = StyleSheet.create({
       flexDirection: 'column', // Add this line to make the content display in the same row
     },
     titleText: {
-      color: '#F5F5F5',
+      color: colors.Background,
       fontSize: 12,
       fontWeight: 'bold',
       flex: 2,
@@ -196,7 +201,7 @@ export const styleCart = StyleSheet.create({
       fontWeight :'bold',
       display: 'flex', 
       justifyContent: 'center', 
-    }
+    },
   });
 
 

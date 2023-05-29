@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
         marginRight: 8,
     },
     inputStyle:{
+        flex: 1,
         color: colors.InputPlaceholder
     }
 });

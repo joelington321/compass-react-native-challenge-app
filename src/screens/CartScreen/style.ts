@@ -3,14 +3,25 @@ import colors from '../../global/colors';
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 70,
         flex:1,
-        marginHorizontal: 30,
+        backgroundColor: colors.Background,
+
     },
-    totalText:{
+    contentContainer:{
+        marginHorizontal: 30,
+        marginTop: 70,
+        flex: 1,
+    },
+    textContainer:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 20
+    },
+    totalText:{     
         fontSize: 20,
         fontWeight: '700',
         color: colors.InputPlaceholder,
+        marginTop: 20
     },
     emptyCart:{
         fontSize: 32,
@@ -36,9 +47,12 @@ const styles = StyleSheet.create({
     columnWrapper:{
 
     },
+    listContainer:{
+        flex: 1,
+    },
     buyButton: {
         alignSelf: 'center',
-        marginBottom: 200,
+        marginBottom: 100,
         width: 230,
         height: 60,
         borderRadius: 25,

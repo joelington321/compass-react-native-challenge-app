@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { View, Text, Pressable } from "react-native";
 import styles from "./style";
 
-const MoreOrLess = () => {
-  const [amount, setAmount] = useState(1);
+const MoreOrLess = ({amount, setAmount}) => {
+  
 
-  const more = () => setAmount(amount + 1);
+  const more = () => {
+    setAmount(amount + 1)
+ 
+  }
   const less = () => setAmount(amount - 1);
   const disable = amount === 1;
 

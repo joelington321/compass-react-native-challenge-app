@@ -5,7 +5,7 @@ const colors = {
   Input: '#656262',
   InputPlaceholder: '#A8A8A8',
   textButton: '#F5F5F5',
-  CardProduct: '#3C3C3E',
+  CardProduct: '#FFFFFF',
   ButtonBuyorAdd: '#20BE4C'
 };
 

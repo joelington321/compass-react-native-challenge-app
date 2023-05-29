@@ -12,18 +12,27 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     containerCards: {
+        flex: 1,
         alignItems: 'center',
         marginHorizontal:10,
+        marginBottom: 50
     },
     headerUser: {
         fontSize: 20,
+        marginLeft: 3,
         color: colors.Primary,
         justifyContent: 'center',
     },
     welcomeText: {
         fontSize: 14,
+        marginLeft: 3,
         color: colors.InputPlaceholder,
         justifyContent: 'center',
+    },
+    trace:{
+        paddingHorizontal: 40,
+        backgroundColor: 'white',
+        padding: 1
     },
     textContainer: {
         fontWeight: 'bold',
