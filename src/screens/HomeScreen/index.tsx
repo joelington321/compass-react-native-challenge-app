@@ -1,63 +1,77 @@
-import React from 'react';
-import { View, StyleSheet, Text, FlatList } from 'react-native';
-import colors from '../../global/colors';
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, Image, TouchableOpacity, SafeAreaView, Pressable } from 'react-native';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
+import styles from './style';
+import Product from '../../components/Item/Product';
+import { fetchProducts } from '../../api/storeapi';
+import { ProductData, StateDisplay, icons } from '../../global/types';
+import Cart from '../../components/Cart';
 
-const Card = () => {
-    return <View style={styles.card} />;
-};
+interface HomeScreenProp {
+    navigation: NavigationProp<ParamListBase>;
+}
 
-const HomeScreen = () => {
-    const data = [1, 2, 3, 4, 5, 6, 7, 8];
+const HomeScreen = ({ navigation }: HomeScreenProp) => {
+    const [products, setProducts] = useState<ProductData[]>([]);
 
-    const renderItem = () => {
-        return <Card />;
+    useEffect(() => {
+        fetchProducts()
+            .then((response) => {
+                setProducts(response.data);
+            })
+            .catch(() => {
+                console.log('Error fetching data');
+            });
+    }, []);
+
+    const onPressProduct = (item: ProductData) => {
+        navigation.navigate('ProductDetailsScreen', { item });
     };
+
+    const onPressCart = () => {
+        navigation.navigate('CartScreen');
+    };
+
+    const renderProduct = ({ item }: { item: ProductData }) => (
+        <TouchableOpacity onPress={() => onPressProduct(item)}>
+            <Product
+                id={item.id}
+                title={item.title}
+                price={item.price}
+                description={item.description}
+                category={item.category}
+                image={item.image}
+                rate={item.rating.rate}
+                count={item.rating.count}
+                state={StateDisplay.Home}
+            />
+        </TouchableOpacity>
+    );
+
 
     return (
         <View style={styles.container}>
-            <View style={styles.textContainer}>
-                <Text style={styles.header}>HOME</Text>
+            <View style={styles.headerContainer}>
+                <View style={styles.textContainer}>
+                    <Text style={styles.welcomeText}>Welcome</Text>
+                    <Text style={styles.headerUser}>User</Text>
+                    <View style={styles.trace} />
+                </View>
+                <Pressable onPress={onPressCart}>
+                    <Cart />
+                </Pressable>
             </View>
-            <FlatList
-                data={data}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.toString()}
-                contentContainerStyle={styles.containerCards}
-                numColumns={2}
-            />
+            <SafeAreaView style={styles.containerCards}>
+                <FlatList
+                    data={products}
+                    renderItem={renderProduct}
+                    keyExtractor={(item) => item.id.toString()}
+                    numColumns={2}
+                    columnWrapperStyle={styles.columnWrapper}
+                />
+            </SafeAreaView>
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: colors.Background,
-    },
-    containerCards: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colors.Background,
-        paddingVertical: 10,
-    },
-    header: {
-        fontSize: 20,
-        color: colors.Primary,
-        justifyContent: 'center',
-    },
-    textContainer: {
-        margin: 15,
-        alignItems: 'flex-start',
-        paddingBottom: 25,
-    },
-    card: {
-        width: 150,
-        height: 200,
-        backgroundColor: 'white',
-        margin: 10,
-        borderRadius: 10,
-        elevation: 2,
-    },
-});
 
 export default HomeScreen;

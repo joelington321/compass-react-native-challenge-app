@@ -5,21 +5,19 @@ import Footer from '../../components/Footer';
 import PrimaryInput from '../../components/Inputs/PrimaryInput';
 import styles from './style';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
+import { icons } from '../../global/types';
 
 interface LoginScreenProps {
   navigation: NavigationProp<ParamListBase>;
 }
 
-const icons = {
-  iconEmail: require('../../assets/icons/icon_mail.png'),
-  iconPassword: require('../../assets/icons/icon_lock.png'),
-}
+
 
 const LoginScreen = ({ navigation }: LoginScreenProps) => {
 
 
   //functions to tracker the value of email input
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState<string>("");
   //use of callback function for save after the email text in <primaryInput> is change
   const emailInputHandler = useCallback((text: string) => {
     setEmail(text);
@@ -27,22 +25,21 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
 
 
   //functions to tracker the value of password input
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState<string>("");
   //use of callback function for save after the password text in <primaryInput> is change
   const passwordInputHandler = useCallback((text: string) => {
     setPassword(text);
   }, []);
 
   //instantiate the values of errors verify
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(Boolean);
+  const [emailError, setEmailError] = useState<boolean>(false);
+  const [passwordError, setPasswordError] = useState<boolean>(false);
 
   const handleLoginPress = () => {
 
     //verify if the fields is empty and display a error msg
     if (email !== '' && password !== '') {
-      console.log('Navigating to HomeScreen');
-      navigation.navigate("HomeScreen");
+      navigation.navigate("HomeScreen", { email });
     } else {
       if (email === '') {
         setEmailError(true);

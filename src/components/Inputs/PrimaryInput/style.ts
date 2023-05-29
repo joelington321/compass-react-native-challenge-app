@@ -1,6 +1,5 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../../global/colors';
-import { color } from 'react-native-reanimated';
 
 const styles = StyleSheet.create({
     primaryInputContainer: {
@@ -30,6 +29,10 @@ const styles = StyleSheet.create({
         width: 25,
         height: 25,
         marginRight: 8,
+    },
+    inputStyle:{
+        flex: 1,
+        color: colors.InputPlaceholder
     }
 });
 

@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     backImg:{
         marginLeft: 20,
     }
+
   });
 
   export default styles;
