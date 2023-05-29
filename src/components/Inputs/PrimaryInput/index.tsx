@@ -40,6 +40,7 @@ const PrimaryInput = ({ placeholder, errorMsg, secureTextEntry, icon, value, err
                     secureTextEntry={secureTextEntry}
                     value={value}
                     onChangeText={handleOnChangeText}
+                    style={styles.inputStyle}
                     {...props}
                 />
             </View>
