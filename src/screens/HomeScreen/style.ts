@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
         margin: 15,
         alignItems: 'flex-start',
         paddingBottom: 25,
+        marginTop: 25
     },
     columnWrapper:{
         justifyContent: 'space-between',
