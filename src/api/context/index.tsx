@@ -47,9 +47,24 @@ export const CartProvider: React.FC = ({ children }: React.PropsWithChildren<{}>
 
     // Função para remover um item do carrinho
     const removeFromCart = (itemId: number) => {
-        setCartItems((prevItems) =>
-            prevItems.filter((item) => item.id !== itemId)
-        );
+        setCartItems((prevItems) => {
+            // Verifique se o item existe no carrinho
+            const existingItem = prevItems.find((i) => i.id === itemId);
+            if (existingItem) {
+                // Se a quantidade do item for maior que 1, diminua a quantidade em 1
+                if (existingItem.quantity > 1) {
+                    return prevItems.map((i) =>
+                        i.id === itemId ? { ...i, quantity: i.quantity - 1 } : i
+                    );
+                } else {
+                    // Se a quantidade do item for igual a 1, remova o item do carrinho
+                    return prevItems.filter((item) => item.id !== itemId);
+                }
+            } else {
+                // Se o item não existir no carrinho, retorne os itens anteriores
+                return prevItems;
+            }
+        });
     };
 
 
