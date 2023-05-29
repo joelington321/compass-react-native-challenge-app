@@ -35,7 +35,23 @@ const styles = StyleSheet.create({
     },
     columnWrapper:{
 
-    }
+    },
+    buyButton: {
+        alignSelf: 'center',
+        marginBottom: 200,
+        width: 230,
+        height: 60,
+        borderRadius: 25,
+        backgroundColor: 'green',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      
+      buyButtonText: {
+        color: 'white',
+        fontSize: 18,
+        fontWeight: 'bold',
+      },
 });
 
 export default styles;

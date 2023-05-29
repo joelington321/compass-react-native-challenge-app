@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import { useCart } from '../../api/context';
 import styles from './style';
 import Product from '../../components/Item/Product';
@@ -7,6 +7,7 @@ import { ProductData, StateDisplay } from '../../global/types';
 import { fetchProducts } from '../../api/storeapi';
 import { AxiosResponse } from 'axios';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
+
 
 interface CartScreenProp {
     navigation: NavigationProp<ParamListBase>;
@@ -16,6 +17,8 @@ interface CartScreenProp {
 function CartScreen({ navigation }: CartScreenProp) {
     const { cartItems, removeFromCart } = useCart();
     const [products, setProducts] = useState<ProductData[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+
 
     useEffect(() => {
         const getProducts = async () => {
@@ -34,6 +37,14 @@ function CartScreen({ navigation }: CartScreenProp) {
     const onPressProduct = (item: ProductData) => {
         navigation.navigate('ProductDetailsScreen', { item });
     };
+
+    const handleBuyButtonPress = () => {
+        setIsLoading(true);
+        setTimeout(() => {
+          setIsLoading(false);
+          Alert.alert('Good!', 'Product sucessfully purchased.');
+        }, 3000);
+      };
 
 
     // Calcule o total do carrinho
@@ -83,8 +94,19 @@ function CartScreen({ navigation }: CartScreenProp) {
                 keyExtractor={(item) => item.id.toString()}
                 numColumns={1}
             />
-        </View>
-    );
+            <TouchableOpacity
+                style={styles.buyButton}
+                onPress={handleBuyButtonPress}
+                disabled={isLoading}
+                >
+                {isLoading ? (
+                    <ActivityIndicator size="small" color="white" />
+                ) : (
+                    <Text style={styles.buyButtonText}>BUY</Text>
+                )}
+            </TouchableOpacity>
+  </View>
+);
 }
 
 export default CartScreen;
