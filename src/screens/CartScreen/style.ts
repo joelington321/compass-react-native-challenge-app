@@ -46,6 +46,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
       },
+      disabledBuyButton:{
+        backgroundColor: 'lightgray'
+      },
       
       buyButtonText: {
         color: 'white',

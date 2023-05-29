@@ -50,8 +50,10 @@ function CartScreen({ navigation }: CartScreenProp) {
     // Calcule o total do carrinho
     const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-    const renderProduct = ({ item }: { item: ProductData }) => {
-        const cartItem = cartItems.find((cartItem) => cartItem.id === item.id);
+    const renderProduct = ({ item }: { item: ProductData }) => {      
+        const cartItem = cartItems.find((cartItem) => 
+                cartItem.id === item.id);
+                
         if (!cartItem) {
             return null;
         }
@@ -95,16 +97,18 @@ function CartScreen({ navigation }: CartScreenProp) {
                 numColumns={1}
             />
             <TouchableOpacity
-                style={styles.buyButton}
+                style={[styles.buyButton, (total === 0 || isLoading) && styles.disabledBuyButton]}
                 onPress={handleBuyButtonPress}
-                disabled={isLoading}
-                >
+                disabled={total === 0 || isLoading}
+            >
                 {isLoading ? (
                     <ActivityIndicator size="small" color="white" />
                 ) : (
                     <Text style={styles.buyButtonText}>BUY</Text>
                 )}
             </TouchableOpacity>
+
+
   </View>
 );
 }
