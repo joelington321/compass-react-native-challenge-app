@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, Image, Pressable, ScrollView } from 'react-native';
+import { Text, View, Image, Pressable, ScrollView, ActivityIndicator } from 'react-native';
 import { styleInfo, styleHome, styleCart } from './style';
 import { StateDisplay } from '../../../global/types';
 import StarRow from '../../Ratingstars';
@@ -23,6 +23,7 @@ interface ProductProps {
     state: StateDisplay;
     onAddToCart?: () => void;
     removeFromCart?: (id: number) => void;
+    load?: boolean;
 }
 
 const Product = ({
@@ -37,6 +38,7 @@ const Product = ({
     state,
     removeFromCart,
     amount,
+    load,
     ...props
 }: ProductProps) => {
     //save the state of favorited
@@ -102,8 +104,8 @@ const Product = ({
                     <View style={styleInfo.priceContainer}>
                         <Text style={styleInfo.priceText}>R$ {formattedPrice}</Text>
                     </View>
-                   
-                    <MoreOrLess setAmount={setAmountAux} amount={amountAux}/>
+
+                    <MoreOrLess setAmount={setAmountAux} amount={amountAux} />
                 </View>
 
                 <ScrollView style={styleInfo.descriptionContainer}>
@@ -112,10 +114,16 @@ const Product = ({
 
                 <Pressable onPress={props.onAddToCart}>
                     <View style={styleInfo.addToCartButton}>
-                        <Text style={styleInfo.addToCartText}>ADD TO CART</Text>
+                        {load ? (
+                            <ActivityIndicator size="small" color="white" />
+                        ) : (
+                            <Text style={styleInfo.addToCartText}>ADD TO CART</Text>
+                        )}
                     </View>
+
+
                 </Pressable>
-                
+
 
             </View>
         );
@@ -124,19 +132,19 @@ const Product = ({
     //if the screen that called the product is the Cart screen, it will have this format
     if (state === StateDisplay.Cart) {
         return (
-                <View style={styleCart.cardContainer}>
-                    {image && <Image source={{ uri: image }} style={styleCart.image} />}
-                    <View style={styleCart.cardInfoContainer}>
-                        <Text style={styleCart.titleText}>{title}</Text>
-                        <View style={styleCart.priceContainer}>
-                            <Text style={styleCart.priceText}>R$ {formattedPrice}</Text>
-                        </View>
+            <View style={styleCart.cardContainer}>
+                {image && <Image source={{ uri: image }} style={styleCart.image} />}
+                <View style={styleCart.cardInfoContainer}>
+                    <Text style={styleCart.titleText}>{title}</Text>
+                    <View style={styleCart.priceContainer}>
+                        <Text style={styleCart.priceText}>R$ {formattedPrice}</Text>
                     </View>
-                    <Pressable onPress={handleRemoveFromCart}>
-                        <View style={styleCart.removedContainer}>
-                            <Text style={styleCart.removedText}>-</Text>
-                        </View>
-                    </Pressable>
+                </View>
+                <Pressable onPress={handleRemoveFromCart}>
+                    <View style={styleCart.removedContainer}>
+                        <Text style={styleCart.removedText}>-</Text>
+                    </View>
+                </Pressable>
             </View>
         );
     }

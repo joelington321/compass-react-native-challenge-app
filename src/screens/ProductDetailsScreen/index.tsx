@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Image, Pressable, Text, ActivityIndicator, Alert } from 'react-native';
 import { RouteProp, NavigationProp, ParamListBase } from '@react-navigation/native';
 import { useCart } from '../../api/context';
@@ -7,77 +7,78 @@ import Product from '../../components/Item/Product';
 import { StateDisplay, ProductData, icons } from '../../global/types';
 import Cart from '../../components/Cart';
 
-
-
-
 type ProductDetailsRouteProp = RouteProp<ParamListBase, 'ProductDetailsScreen'>;
 
 interface ProductDetailsScreenProps {
-    route: ProductDetailsRouteProp;
-    navigation: NavigationProp<ParamListBase>;
+  route: ProductDetailsRouteProp;
+  navigation: NavigationProp<ParamListBase>;
 }
 
 function ProductDetailsScreen({ route, navigation }: ProductDetailsScreenProps, props: any) {
-    const { item } = route.params as { item: ProductData };
-    const { addToCart, cartItems } = useCart();
-    const existingCartItem = cartItems.find((cartItem) => cartItem.id === item.id);
-    const [amount, setAmount] = useState<number>(existingCartItem ? existingCartItem.quantity : 1);
-    const [isLoading, setIsLoading] = useState(false);
+  const { item } = route.params as { item: ProductData };
+  const { addToCart, cartItems } = useCart();
+  const existingCartItem = cartItems.find((cartItem) => cartItem.id === item.id);
+  const [amount, setAmount] = useState<number>(existingCartItem ? existingCartItem.quantity : 1);
+  const [isLoading, setIsLoading] = useState(false);
 
+  const onPressCart = () => {
+    navigation.navigate('CartScreen');
+  };
 
-    const onPressCart = () => {
-      navigation.navigate('CartScreen');
-    };
+  const handleAddToCart = async () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      addToCart({
+        id: item.id,
+        title: item.title,
+        price: item.price,
+        quantity: amount,
+      });
+      Alert.alert('Good!', 'Product sucessfully purchased.');
+    }, 3000);
+  };
 
-    const handleAddToCart = () => {
-        setIsLoading(true);
-        // Adicione o item ao carrinho
-
-          addToCart({
-              id: item.id,
-              title: item.title,
-              price: item.price,
-              quantity: amount,
-            });
-
-          
-          setTimeout(() => {
-            setIsLoading(false);
-            Alert.alert('Good!', 'Product added to cart!');
-          }, 3000);
-          console.log(cartItems)
-    };
-
-
-
-    return (
-        <View style={styles.container}>
-          <Pressable onPress={onPressCart}>
-            <Cart/>
-          </Pressable>
-          <View style={styles.productContainer}>
-            {isLoading ? (
-              <ActivityIndicator size="large" color="#000000" />
-              ) : (
-                <Product
-                id={item.id}
-                title={item.title}
-                price={item.price}
-                description={item.description}
-                category={item.category}
-                image={item.image}
-                rate={item.rating.rate}
-                count={item.rating.count}
-                state={StateDisplay.Info}
-                onAddToCart={handleAddToCart}
-                amount={amount}
-                
-                />
-                )}
-          </View>
-        </View>
-      );
-    }
-
+  return (
+    <View style={styles.container}>
+      <Pressable onPress={onPressCart}>
+        <Cart />
+      </Pressable>
+      <View style={styles.productContainer}>
+        {isLoading ? (
+          <Product
+            id={item.id}
+            title={item.title}
+            price={item.price}
+            description={item.description}
+            category={item.category}
+            image={item.image}
+            rate={item.rating.rate}
+            count={item.rating.count}
+            state={StateDisplay.Info}
+            onAddToCart={handleAddToCart}
+            amount={amount}
+            load={true}
+          />
+        ) : (
+          <Product
+            id={item.id}
+            title={item.title}
+            price={item.price}
+            description={item.description}
+            category={item.category}
+            image={item.image}
+            rate={item.rating.rate}
+            count={item.rating.count}
+            state={StateDisplay.Info}
+            onAddToCart={handleAddToCart}
+            amount={amount}
+            load={false}
+          />
+        )}
+      </View>
+    </View>
+  );
+}
 
 export default ProductDetailsScreen;

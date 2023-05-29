@@ -54,11 +54,11 @@ const HomeScreen = ({ navigation }: HomeScreenProp) => {
             <View style={styles.headerContainer}>
                 <View style={styles.textContainer}>
                     <Text style={styles.welcomeText}>Welcome</Text>
-                    <Text style={styles.headerUser}>Welliton</Text>
-                    <View style={styles.trace}/>
+                    <Text style={styles.headerUser}>User</Text>
+                    <View style={styles.trace} />
                 </View>
                 <Pressable onPress={onPressCart}>
-                    <Cart/>
+                    <Cart />
                 </Pressable>
             </View>
             <SafeAreaView style={styles.containerCards}>

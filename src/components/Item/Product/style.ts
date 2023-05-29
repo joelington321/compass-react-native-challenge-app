@@ -123,6 +123,18 @@ export const styleInfo = StyleSheet.create({
     height: 50,
     borderRadius: 20,
   },
+  addToCartButtonLoading:{
+    backgroundColor: colors.InputPlaceholder,
+    width: 260,
+    height: 50,
+    borderRadius: 20,
+  },
+  addToCartButtontext:{
+    color: colors.InputPlaceholder,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontSize: 15,
+  },
   addToCartText:{
     flex:1,
     textAlign: 'center',
@@ -131,6 +143,7 @@ export const styleInfo = StyleSheet.create({
     fontWeight: 'bold',
     color: '#FFFFFF'
   },
+  
   starContainer:{
     margin: 10,
     justifyContent: 'flex-start',
@@ -202,6 +215,9 @@ export const styleCart = StyleSheet.create({
       display: 'flex', 
       justifyContent: 'center', 
     },
+    cardTest:{
+      flexDirection: 'row'
+    }
   });
 
 

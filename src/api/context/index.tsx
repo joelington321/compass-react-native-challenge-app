@@ -13,6 +13,7 @@ interface CartContextData {
     cartItems: CartItem[];
     addToCart: (item: CartItem) => void;
     removeFromCart: (itemId: number) => void;
+    clearCart: () => void;
 }
 
 // Crie o contexto do carrinho
@@ -20,6 +21,7 @@ const CartContext = createContext<CartContextData>({
     cartItems: [],
     addToCart: () => { },
     removeFromCart: () => { },
+    clearCart: () => { }
 });
 
 // Crie o provedor do contexto do carrinho
@@ -51,8 +53,13 @@ export const CartProvider: React.FC = ({ children }: React.PropsWithChildren<{}>
     };
 
 
+
+    const clearCart = () => {
+        setCartItems([]);
+    };
+
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart}}>
+        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart }}>
             {children}
         </CartContext.Provider>
     );

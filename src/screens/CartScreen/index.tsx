@@ -17,7 +17,8 @@ interface CartScreenProp {
 function CartScreen({ navigation }: CartScreenProp) {
     const { cartItems, removeFromCart } = useCart();
     const [products, setProducts] = useState<ProductData[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const { clearCart } = useCart();
 
 
     useEffect(() => {
@@ -45,6 +46,7 @@ function CartScreen({ navigation }: CartScreenProp) {
         setTimeout(() => {
             setIsLoading(false);
             Alert.alert('Good!', 'Product sucessfully purchased.');
+            clearCart();
         }, 3000);
     };
 
@@ -54,30 +56,34 @@ function CartScreen({ navigation }: CartScreenProp) {
 
 
     const renderProduct = ({ item }: { item: ProductData }) => {
-        const cartItem = cartItems.find((cartItem) =>
-            cartItem.id === item.id);
+        const cartItem = cartItems.find((cartItem) => cartItem.id === item.id);
 
         if (!cartItem) {
             return null;
         }
 
+        const productComponents = [];
 
-        return (
-            <TouchableOpacity onPress={() => onPressProduct(item)}>
-                <Product
-                    id={item.id}
-                    title={item.title}
-                    price={item.price}
-                    description={item.description}
-                    category={item.category}
-                    image={item.image}
-                    rate={item.rating.rate}
-                    count={item.rating.count}
-                    state={StateDisplay.Cart}
-                    removeFromCart={removeFromCart}
-                />
-            </TouchableOpacity>
-        );
+        for (let i = 0; i < cartItem.quantity; i++) {
+            productComponents.push(
+                <TouchableOpacity key={i} onPress={() => onPressProduct(item)}>
+                    <Product
+                        id={item.id}
+                        title={item.title}
+                        price={item.price}
+                        description={item.description}
+                        category={item.category}
+                        image={item.image}
+                        rate={item.rating.rate}
+                        count={item.rating.count}
+                        state={StateDisplay.Cart}
+                        removeFromCart={removeFromCart}
+                    />
+                </TouchableOpacity>
+            );
+        }
+
+        return <View>{productComponents}</View>;
     };
 
 
