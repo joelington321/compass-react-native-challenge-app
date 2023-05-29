@@ -44,8 +44,17 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         color: colors.Primary,
     },
-    columnWrapper:{
-
+    opsText:{
+        fontSize: 32,
+        fontWeight: '600',
+        color: colors.InputPlaceholder,
+        marginTop: 60
+    },
+    productAlertText:{
+        fontSize: 20,
+        fontWeight: '600',
+        color: colors.InputPlaceholder,
+        marginTop: 60
     },
     listContainer:{
         flex: 1,

@@ -43,20 +43,20 @@ function CartScreen({ navigation }: CartScreenProp) {
     const handleBuyButtonPress = () => {
         setIsLoading(true);
         setTimeout(() => {
-          setIsLoading(false);
-          Alert.alert('Good!', 'Product sucessfully purchased.');
+            setIsLoading(false);
+            Alert.alert('Good!', 'Product sucessfully purchased.');
         }, 3000);
-      };
+    };
 
 
     // Calcule o total do carrinho
     const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    
-    
-    const renderProduct = ({ item }: { item: ProductData }) => {      
-        const cartItem = cartItems.find((cartItem) => 
-                cartItem.id === item.id);
-                
+
+
+    const renderProduct = ({ item }: { item: ProductData }) => {
+        const cartItem = cartItems.find((cartItem) =>
+            cartItem.id === item.id);
+
         if (!cartItem) {
             return null;
         }
@@ -90,32 +90,32 @@ function CartScreen({ navigation }: CartScreenProp) {
                     </View>
                     <Text style={styles.totalValueText}>R$ {total.toFixed(2)}</Text>
                     <View style={styles.textContainer}>
-                        {total == 0.00 && <Text style={styles.totalText}> Oops, Empty Cart :( </Text>}
-                        {total == 0.00 && <Text style={styles.totalText}> Add a product</Text>} 
+                        {total == 0.00 && <Text style={styles.opsText}> Oops, Empty Cart :( </Text>}
+                        {total == 0.00 && <Text style={styles.productAlertText}> Add a product</Text>}
                     </View>
-                </View>             
-                    <FlatList
-                        data={products}
-                        renderItem={renderProduct}
-                        keyExtractor={(item) => item.id.toString()}
-                        numColumns={1}
-                        />
+                </View>
+                <FlatList
+                    data={products}
+                    renderItem={renderProduct}
+                    keyExtractor={(item) => item.id.toString()}
+                    numColumns={1}
+                />
             </View>
-                <TouchableOpacity
-                    style={[styles.buyButton, (total === 0 || isLoading) && styles.disabledBuyButton]}
-                    onPress={handleBuyButtonPress}
-                    disabled={total === 0 || isLoading}
-                    >
-                    {isLoading ? (
-                        <ActivityIndicator size="small" color="white" />
-                        ) : (
-                            <Text style={styles.buyButtonText}>BUY</Text>
-                            )}
-                </TouchableOpacity>
+            <TouchableOpacity
+                style={[styles.buyButton, (total === 0 || isLoading) && styles.disabledBuyButton]}
+                onPress={handleBuyButtonPress}
+                disabled={total === 0 || isLoading}
+            >
+                {isLoading ? (
+                    <ActivityIndicator size="small" color="white" />
+                ) : (
+                    <Text style={styles.buyButtonText}>BUY</Text>
+                )}
+            </TouchableOpacity>
 
 
-  </View>
-);
+        </View>
+    );
 }
 
 export default CartScreen;
