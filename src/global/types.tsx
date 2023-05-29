@@ -28,4 +28,5 @@ export const icons = {
     iconHomeBar: require('../assets/icons/icon_home-bar.png'),
     iconCartF: require('../assets/icons/icon_cart-focused.png'),
     iconCartBar: require('../assets/icons/icon_cart-bar.png'),
+    iconLoading: require('../assets/icons/loading.png'),
 }

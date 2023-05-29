@@ -107,11 +107,14 @@ const Product = ({
                 <View style={styleInfo.descriptionContainer}>
                     <Text style={styleInfo.descriptionText}>{description}</Text>
                 </View>
+
                 <Pressable onPress={props.onAddToCart}>
                     <View style={styleInfo.addToCartButton}>
                         <Text style={styleInfo.addToCartText}>ADD TO CART</Text>
                     </View>
                 </Pressable>
+                
+
             </View>
         );
     }

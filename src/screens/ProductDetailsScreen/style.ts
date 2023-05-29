@@ -1,4 +1,6 @@
 import { StyleSheet } from 'react-native'
+import colors from '../../global/colors'
+
 
 const styles = StyleSheet.create({
     container: {
@@ -9,11 +11,12 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
     },
     cartImage:{
-        
+        width: 24,
+        height: 24,
     },
     productContainer:{
         alignContent: 'center', 
-    }
+    },   
 });
 
 export default styles;
