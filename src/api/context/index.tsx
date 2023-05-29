@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext } from 'react';
 
-// Defina a interface para os itens do carrinho
+// Define the interface for cart items
 interface CartItem {
     id: number;
     title: string;
@@ -8,7 +8,7 @@ interface CartItem {
     quantity: number;
 }
 
-// Defina a interface para o contexto do carrinho
+// Set the interface to the cart context
 interface CartContextData {
     cartItems: CartItem[];
     addToCart: (item: CartItem) => void;
@@ -16,7 +16,7 @@ interface CartContextData {
     clearCart: () => void;
 }
 
-// Crie o contexto do carrinho
+// Create cart context
 const CartContext = createContext<CartContextData>({
     cartItems: [],
     addToCart: () => { },
@@ -24,44 +24,44 @@ const CartContext = createContext<CartContextData>({
     clearCart: () => { }
 });
 
-// Crie o provedor do contexto do carrinho
+// Create cart context provider
 export const CartProvider: React.FC = ({ children }: React.PropsWithChildren<{}>) => {
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-    // Função para adicionar um item ao carrinho
+    // Function to add an item to the cart
     const addToCart = (item: CartItem) => {
         setCartItems((prevItems) => {
-            // Verifique se o item já existe no carrinho
+            // Check if the item already exists in the cart
             const existingItem = prevItems.find((i) => i.id === item.id);
             if (existingItem) {
-                // Se o item já existe, atualize apenas a quantidade
+                // If the item already exists, just update the quantity
                 return prevItems.map((i) =>
                     i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
                 );
             } else {
-                // Se o item ainda não existe, adicione-o ao carrinho
+                // If the item does not yet exist, add it to the cart
                 return [...prevItems, { ...item, quantity: 1 }];
             }
         });
     };
 
-    // Função para remover um item do carrinho
+    // Function to remove an item from the cart
     const removeFromCart = (itemId: number) => {
         setCartItems((prevItems) => {
-            // Verifique se o item existe no carrinho
+            // Check if the item exists in the cart
             const existingItem = prevItems.find((i) => i.id === itemId);
             if (existingItem) {
-                // Se a quantidade do item for maior que 1, diminua a quantidade em 1
+                // If the item's quantity is greater than 1, decrease the quantity by 1
                 if (existingItem.quantity > 1) {
                     return prevItems.map((i) =>
                         i.id === itemId ? { ...i, quantity: i.quantity - 1 } : i
                     );
                 } else {
-                    // Se a quantidade do item for igual a 1, remova o item do carrinho
+                    // If item quantity equals 1, remove item from cart
                     return prevItems.filter((item) => item.id !== itemId);
                 }
             } else {
-                // Se o item não existir no carrinho, retorne os itens anteriores
+                // If the item does not exist in the cart, return the previous items
                 return prevItems;
             }
         });
@@ -80,5 +80,5 @@ export const CartProvider: React.FC = ({ children }: React.PropsWithChildren<{}>
     );
 };
 
-// Crie um hook para usar o contexto do carrinho
+// Create a hook to use cart context
 export const useCart = () => useContext(CartContext);
