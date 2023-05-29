@@ -51,7 +51,7 @@ function CartScreen({ navigation }: CartScreenProp) {
     };
 
 
-    // Calcule o total do carrinho
+    // Calculate cart total
     const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
 
