@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { View, Image, Pressable, Text, ActivityIndicator, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { View, Pressable, Alert } from 'react-native';
 import { RouteProp, NavigationProp, ParamListBase } from '@react-navigation/native';
 import { useCart } from '../../api/context';
 import styles from './style';
 import Product from '../../components/Item/Product';
-import { StateDisplay, ProductData, icons } from '../../global/types';
+import { StateDisplay, ProductData } from '../../global/types';
 import Cart from '../../components/Cart';
 
 type ProductDetailsRouteProp = RouteProp<ParamListBase, 'ProductDetailsScreen'>;
@@ -18,7 +18,7 @@ function ProductDetailsScreen({ route, navigation }: ProductDetailsScreenProps, 
   const { item } = route.params as { item: ProductData };
   const { addToCart, cartItems } = useCart();
   const existingCartItem = cartItems.find((cartItem) => cartItem.id === item.id);
-  const [amount, setAmount] = useState<number>(existingCartItem ? existingCartItem.quantity : 1);
+  const [amount] = useState<number>(existingCartItem ? existingCartItem.quantity : 1);
   const [isLoading, setIsLoading] = useState(false);
 
   const onPressCart = () => {
